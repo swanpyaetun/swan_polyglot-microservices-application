@@ -1,0 +1,33 @@
+name: product-catalog
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+
+        steps:
+        - name: Checkout repository
+          uses: actions/checkout@v6
+
+        - name: Setup Go
+          uses: actions/setup-go@v6
+          with:
+            go-version: '1.23'
+        
+        - name: Build
+          run: |
+            cd src/product-catalog
+            go mod download
+            go build -o product-catalog main.go
+
+        - name: Run unit tests
+          run: |
+            cd src/product-catalog
+            go test ./...

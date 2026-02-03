@@ -45,6 +45,5 @@ jobs:
           REPOSITORY: swan_polyglot-microservices-application/product-catalog
           IMAGE_TAG: ${{ github.sha }}
         run: |
-          cd src/product-catalog/
-          docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG .
+          docker build -f src/product-catalog/Dockerfile -t $REGISTRY/$REPOSITORY:$IMAGE_TAG .
           docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG

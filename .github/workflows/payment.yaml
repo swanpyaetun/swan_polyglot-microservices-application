@@ -1,0 +1,38 @@
+name: payment
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'src/payment/**'
+      - '.github/workflows/payment.yaml'
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'src/payment/**'
+      - '.github/workflows/payment.yaml'
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+
+        steps:
+        - name: Checkout repository
+          uses: actions/checkout@v6
+
+        - name: Setup Node.js
+          uses: actions/setup-node@v6
+          with:
+            node-version: '24'
+        
+        - name: Build
+          run: |
+            cd src/payment
+            npm install
+            
+        - name: Run unit tests
+          run: |
+            cd src/payment
+            npm test

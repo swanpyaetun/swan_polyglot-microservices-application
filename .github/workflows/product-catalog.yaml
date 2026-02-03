@@ -15,35 +15,10 @@ on:
       - '.github/workflows/product-catalog.yaml'
   workflow_dispatch:
 
-env:
-  SWAN_AWS_REGION: "ap-southeast-1"
-
 jobs:
   swan_docker:
-    runs-on: ubuntu-latest
-
-    permissions:
-      id-token: write # id-token write permission is needed to use OIDC
-    
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v6
-
-      - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v5
-        with:
-          role-to-assume: ${{ secrets.SWAN_CI_ROLE_ARN }}
-          aws-region: ${{ env.SWAN_AWS_REGION }}
-
-      - name: Login to Amazon ECR
-        id: login-ecr
-        uses: aws-actions/amazon-ecr-login@v2
-
-      - name: Build, tag, and push docker image to Amazon ECR
-        env:
-          REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          REPOSITORY: swan_polyglot-microservices-application/product-catalog
-          IMAGE_TAG: ${{ github.sha }}
-        run: |
-          docker build -f src/product-catalog/Dockerfile -t $REGISTRY/$REPOSITORY:$IMAGE_TAG .
-          docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
+    uses: ./.github/workflows/swan_docker.yaml
+    with:
+      swan_aws_region: "ap-southeast-1"
+      swan_ecr_repository: "swan_polyglot-microservices-application/product-catalog"
+      swan_dockerfile_path: "src/product-catalog/Dockerfile"

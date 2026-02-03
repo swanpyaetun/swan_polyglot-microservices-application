@@ -3,16 +3,19 @@ name: Reusable workflow for building and pushing docker images
 on:
   workflow_call:
     inputs:
-        swan_aws_region:
-          required: false
-          type: string
-          default: "ap-southeast-1"
-        swan_ecr_repository:
-          required: true
-          type: string
-        swan_dockerfile_path:
-          required: true
-          type: string
+      swan_aws_region:
+        required: false
+        type: string
+        default: "ap-southeast-1"
+      swan_ecr_repository:
+        required: true
+        type: string
+      swan_dockerfile_path:
+        required: true
+        type: string
+    secrets:
+      SWAN_CI_ROLE_ARN:
+        required: true
 
 jobs:
   swan_docker:

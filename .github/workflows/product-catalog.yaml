@@ -22,3 +22,5 @@ jobs:
       swan_aws_region: "ap-southeast-1"
       swan_ecr_repository: "swan_polyglot-microservices-application/product-catalog"
       swan_dockerfile_path: "src/product-catalog/Dockerfile"
+    secrets:
+      SWAN_CI_ROLE_ARN: ${{ secrets.SWAN_CI_ROLE_ARN }}

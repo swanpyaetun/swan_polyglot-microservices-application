@@ -74,7 +74,7 @@ spec:
             - name: config-rw
               mountPath: /etc/flagd
         - name: flagd-ui
-          image: '655355946217.dkr.ecr.ap-southeast-1.amazonaws.com/swan_polyglot-microservices-application/flagd:21671988728'
+          image: '655355946217.dkr.ecr.ap-southeast-1.amazonaws.com/swan_polyglot-microservices-application/flagd:21674858410'
           imagePullPolicy: IfNotPresent
           ports:
             

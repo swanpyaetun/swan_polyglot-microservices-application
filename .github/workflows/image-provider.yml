@@ -1,0 +1,23 @@
+name: image-provider
+
+on:
+  push:
+    branches:
+      - main
+    #paths:
+    #  - 'src/image-provider/**'
+  pull_request:
+    branches:
+      - main
+    #paths:
+    #  - 'src/image-provider/**'
+  workflow_dispatch:
+
+jobs:
+  swan_docker:
+    uses: ./.github/workflows/swan_docker.yaml
+    with:
+      swan_ecr_repository: "swan_polyglot-microservices-application/image-provider"
+      swan_dockerfile_path: "/src/image-provider/Dockerfile"
+    secrets:
+      SWAN_CI_ROLE_ARN: ${{ secrets.SWAN_CI_ROLE_ARN }}

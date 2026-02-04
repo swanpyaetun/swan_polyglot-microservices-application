@@ -4,22 +4,19 @@ on:
   push:
     branches:
       - main
-    paths:
-      - 'src/product-catalog/**'
-      - '.github/workflows/product-catalog.yaml'
+    #paths:
+    #  - 'src/product-catalog/**'
   pull_request:
     branches:
       - main
-    paths:
-      - 'src/product-catalog/**'
-      - '.github/workflows/product-catalog.yaml'
+    #paths:
+    #  - 'src/product-catalog/**'
   workflow_dispatch:
 
 jobs:
   swan_docker:
     uses: ./.github/workflows/swan_docker.yaml
     with:
-      swan_aws_region: "ap-southeast-1"
       swan_ecr_repository: "swan_polyglot-microservices-application/product-catalog"
       swan_dockerfile_path: "src/product-catalog/Dockerfile"
     secrets:

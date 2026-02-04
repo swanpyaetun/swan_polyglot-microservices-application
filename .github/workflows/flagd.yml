@@ -1,0 +1,23 @@
+name: flagd
+
+on:
+  push:
+    branches:
+      - main
+    #paths:
+    #  - 'src/flagd/**'
+  pull_request:
+    branches:
+      - main
+    #paths:
+    #  - 'src/flagd/**'
+  workflow_dispatch:
+
+jobs:
+  swan_docker:
+    uses: ./.github/workflows/swan_docker.yaml
+    with:
+      swan_ecr_repository: "swan_polyglot-microservices-application/flagd"
+      swan_dockerfile_path: "/src/flagd/Dockerfile"
+    secrets:
+      SWAN_CI_ROLE_ARN: ${{ secrets.SWAN_CI_ROLE_ARN }}

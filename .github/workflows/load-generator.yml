@@ -1,0 +1,23 @@
+name: load-generator
+
+on:
+  push:
+    branches:
+      - main
+    #paths:
+    #  - 'src/load-generator/**'
+  pull_request:
+    branches:
+      - main
+    #paths:
+    #  - 'src/load-generator/**'
+  workflow_dispatch:
+
+jobs:
+  swan_docker:
+    uses: ./.github/workflows/swan_docker.yaml
+    with:
+      swan_ecr_repository: "swan_polyglot-microservices-application/load-generator"
+      swan_dockerfile_path: "/src/load-generator/Dockerfile"
+    secrets:
+      SWAN_CI_ROLE_ARN: ${{ secrets.SWAN_CI_ROLE_ARN }}

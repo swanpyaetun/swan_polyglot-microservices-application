@@ -1,0 +1,23 @@
+name: frontend-proxy
+
+on:
+  push:
+    branches:
+      - main
+    #paths:
+    #  - 'src/frontend-proxy/**'
+  pull_request:
+    branches:
+      - main
+    #paths:
+    #  - 'src/frontend-proxy/**'
+  workflow_dispatch:
+
+jobs:
+  swan_docker:
+    uses: ./.github/workflows/swan_docker.yaml
+    with:
+      swan_ecr_repository: "swan_polyglot-microservices-application/frontend-proxy"
+      swan_dockerfile_path: "/src/frontend-proxy/Dockerfile"
+    secrets:
+      SWAN_CI_ROLE_ARN: ${{ secrets.SWAN_CI_ROLE_ARN }}

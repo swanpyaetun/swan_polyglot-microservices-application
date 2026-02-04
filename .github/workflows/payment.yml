@@ -1,0 +1,23 @@
+name: payment
+
+on:
+  push:
+    branches:
+      - main
+    #paths:
+    #  - 'src/payment/**'
+  pull_request:
+    branches:
+      - main
+    #paths:
+    #  - 'src/payment/**'
+  workflow_dispatch:
+
+jobs:
+  swan_docker:
+    uses: ./.github/workflows/swan_docker.yaml
+    with:
+      swan_ecr_repository: "swan_polyglot-microservices-application/payment"
+      swan_dockerfile_path: "/src/payment/Dockerfile"
+    secrets:
+      SWAN_CI_ROLE_ARN: ${{ secrets.SWAN_CI_ROLE_ARN }}

@@ -1,0 +1,23 @@
+name: cart
+
+on:
+  push:
+    branches:
+      - main
+    #paths:
+    #  - 'src/cart/**'
+  pull_request:
+    branches:
+      - main
+    #paths:
+    #  - 'src/cart/**'
+  workflow_dispatch:
+
+jobs:
+  swan_docker:
+    uses: ./.github/workflows/swan_docker.yaml
+    with:
+      swan_ecr_repository: "swan_polyglot-microservices-application/cart"
+      swan_dockerfile_path: "/src/cart/src/Dockerfile"
+    secrets:
+      SWAN_CI_ROLE_ARN: ${{ secrets.SWAN_CI_ROLE_ARN }}

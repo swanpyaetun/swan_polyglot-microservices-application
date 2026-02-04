@@ -1,0 +1,23 @@
+name: quote
+
+on:
+  push:
+    branches:
+      - main
+    #paths:
+    #  - 'src/quote/**'
+  pull_request:
+    branches:
+      - main
+    #paths:
+    #  - 'src/quote/**'
+  workflow_dispatch:
+
+jobs:
+  swan_docker:
+    uses: ./.github/workflows/swan_docker.yaml
+    with:
+      swan_ecr_repository: "swan_polyglot-microservices-application/quote"
+      swan_dockerfile_path: "/src/quote/Dockerfile"
+    secrets:
+      SWAN_CI_ROLE_ARN: ${{ secrets.SWAN_CI_ROLE_ARN }}

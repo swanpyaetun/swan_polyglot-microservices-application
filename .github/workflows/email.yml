@@ -1,0 +1,23 @@
+name: email
+
+on:
+  push:
+    branches:
+      - main
+    #paths:
+    #  - 'src/email/**'
+  pull_request:
+    branches:
+      - main
+    #paths:
+    #  - 'src/email/**'
+  workflow_dispatch:
+
+jobs:
+  swan_docker:
+    uses: ./.github/workflows/swan_docker.yaml
+    with:
+      swan_ecr_repository: "swan_polyglot-microservices-application/email"
+      swan_dockerfile_path: "/src/email/Dockerfile"
+    secrets:
+      SWAN_CI_ROLE_ARN: ${{ secrets.SWAN_CI_ROLE_ARN }}

@@ -18,6 +18,6 @@ jobs:
     uses: ./.github/workflows/swan_docker.yml
     with:
       swan_ecr_repository: "swan_polyglot-microservices-application/quote"
-      swan_dockerfile_path: "/src/quote/Dockerfile"
+      swan_dockerfile_path: "src/quote/Dockerfile"
     secrets:
       SWAN_CI_ROLE_ARN: ${{ secrets.SWAN_CI_ROLE_ARN }}

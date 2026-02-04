@@ -5,12 +5,12 @@ on:
     branches:
       - main
     #paths:
-    #  - 'src/flagd/**'
+    #  - 'src/flagd-ui/**'
   pull_request:
     branches:
       - main
     #paths:
-    #  - 'src/flagd/**'
+    #  - 'src/flagd-ui/**'
   workflow_dispatch:
 
 jobs:

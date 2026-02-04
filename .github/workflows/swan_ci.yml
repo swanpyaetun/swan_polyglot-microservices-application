@@ -79,9 +79,6 @@ jobs:
     needs: swan_docker
     permissions:
       contents: write
-    concurrency:
-      group: "swan_update_k8s_manifest"
-      cancel-in-progress: false
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6

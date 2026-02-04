@@ -15,7 +15,7 @@ on:
 
 jobs:
   swan_docker:
-    uses: ./.github/workflows/swan_docker.yml
+    uses: ./.github/workflows/swan_ci.yml
     with:
       swan_ecr_repository: "swan_polyglot-microservices-application/currency"
       swan_dockerfile_path: "src/currency/Dockerfile"

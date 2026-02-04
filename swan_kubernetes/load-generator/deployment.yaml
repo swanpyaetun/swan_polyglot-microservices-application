@@ -34,7 +34,7 @@ spec:
       serviceAccountName: opentelemetry-demo
       containers:
         - name: load-generator
-          image: '655355946217.dkr.ecr.ap-southeast-1.amazonaws.com/swan_polyglot-microservices-application/load-generator:21671988749'
+          image: '655355946217.dkr.ecr.ap-southeast-1.amazonaws.com/swan_polyglot-microservices-application/load-generator:21674858433'
           imagePullPolicy: IfNotPresent
           ports:
             

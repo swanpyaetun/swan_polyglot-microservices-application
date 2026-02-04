@@ -15,7 +15,7 @@ on:
 
 jobs:
   swan_docker:
-    uses: ./.github/workflows/swan_docker.yaml
+    uses: ./.github/workflows/swan_docker.yml
     with:
       swan_ecr_repository: "swan_polyglot-microservices-application/recommendation"
       swan_dockerfile_path: "/src/recommendation/Dockerfile"

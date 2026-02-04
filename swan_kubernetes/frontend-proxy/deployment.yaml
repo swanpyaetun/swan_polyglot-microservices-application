@@ -39,7 +39,7 @@ spec:
       serviceAccountName: opentelemetry-demo
       containers:
         - name: frontend-proxy
-          image: '655355946217.dkr.ecr.ap-southeast-1.amazonaws.com/swan_polyglot-microservices-application/frontend-proxy:21671988751'
+          image: '655355946217.dkr.ecr.ap-southeast-1.amazonaws.com/swan_polyglot-microservices-application/frontend-proxy:21674858418'
           imagePullPolicy: IfNotPresent
           ports:
             

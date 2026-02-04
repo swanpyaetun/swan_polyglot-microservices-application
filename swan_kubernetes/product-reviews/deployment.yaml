@@ -34,7 +34,7 @@ spec:
       serviceAccountName: opentelemetry-demo
       containers:
         - name: product-reviews
-          image: 'ghcr.io/open-telemetry/demo:2.2.0-product-reviews'
+          image: '655355946217.dkr.ecr.ap-southeast-1.amazonaws.com/swan_polyglot-microservices-application/product-reviews:21671988753'
           imagePullPolicy: IfNotPresent
           ports:
             

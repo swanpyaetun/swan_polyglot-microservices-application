@@ -34,7 +34,7 @@ spec:
       serviceAccountName: opentelemetry-demo
       containers:
         - name: ad
-          image: 'ghcr.io/open-telemetry/demo:2.2.0-ad'
+          image: '655355946217.dkr.ecr.ap-southeast-1.amazonaws.com/swan_polyglot-microservices-application/ad:21671988701'
           imagePullPolicy: IfNotPresent
           ports:
             

@@ -19,5 +19,6 @@ jobs:
     with:
       swan_ecr_repository: "swan_polyglot-microservices-application/image-provider"
       swan_dockerfile_path: "src/image-provider/Dockerfile"
+      swan_k8s_manifest_path: "swan_kubernetes/image-provider/deployment.yaml"
     secrets:
       SWAN_CI_ROLE_ARN: ${{ secrets.SWAN_CI_ROLE_ARN }}

@@ -19,5 +19,6 @@ jobs:
     with:
       swan_ecr_repository: "swan_polyglot-microservices-application/frontend"
       swan_dockerfile_path: "src/frontend/Dockerfile"
+      swan_k8s_manifest_path: "swan_kubernetes/frontend/deployment.yaml"
     secrets:
       SWAN_CI_ROLE_ARN: ${{ secrets.SWAN_CI_ROLE_ARN }}

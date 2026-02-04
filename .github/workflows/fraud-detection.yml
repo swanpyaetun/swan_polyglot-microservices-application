@@ -19,5 +19,6 @@ jobs:
     with:
       swan_ecr_repository: "swan_polyglot-microservices-application/fraud-detection"
       swan_dockerfile_path: "src/fraud-detection/Dockerfile"
+      swan_k8s_manifest_path: "swan_kubernetes/fraud-detection/deployment.yaml"
     secrets:
       SWAN_CI_ROLE_ARN: ${{ secrets.SWAN_CI_ROLE_ARN }}

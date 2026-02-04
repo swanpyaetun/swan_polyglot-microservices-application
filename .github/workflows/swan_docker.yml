@@ -26,6 +26,8 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       id-token: write # id-token write permission is needed to use OIDC
+    outputs:
+      swan_ecr_registry: ${{ steps.set-output.outputs.swan_ecr_registry }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
@@ -66,6 +68,11 @@ jobs:
             TRACETEST_IMAGE_VERSION=${{ env.TRACETEST_IMAGE_VERSION }}
           tags: ${{ steps.login-ecr.outputs.registry }}/${{ inputs.swan_ecr_repository }}:${{ github.run_id }}
 
+      - name: Set swan_ecr_registry output
+        id: set-output
+        run: |
+          echo "swan_ecr_registry=${{ steps.login-ecr.outputs.registry }}" >> $GITHUB_OUTPUT
+
   swan_update_k8s_manifest:
     name: Update Image Tag in Kubernetes Manifest
     runs-on: ubuntu-latest
@@ -81,7 +88,7 @@ jobs:
 
       - name: Update image tag in kubernetes manifest
         run: |
-          sed -i "s|image: '\(${{ steps.login-ecr.outputs.registry }}/${{ inputs.swan_ecr_repository }}\):.*'|image: '\1:${{ github.run_id }}'|" ${{ inputs.swan_k8s_manifest_path }}
+          sed -i "s|image: '\(${{ needs.swan_docker.outputs.swan_ecr_registry }}/${{ inputs.swan_ecr_repository }}\):.*'|image: '\1:${{ github.run_id }}'|" ${{ inputs.swan_k8s_manifest_path }}
 
       - name: Commit and push changes
         run: |

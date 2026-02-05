@@ -8,7 +8,7 @@ spec:
   generators:
     - git:
         repoURL: git@github.com:swanpyaetun/swan_polyglot-microservices-application.git
-        targetRevision: main
+        revision: main
         directories:
           - path: swan_kubernetes/swan_helm/swan_microservices/*
   template:

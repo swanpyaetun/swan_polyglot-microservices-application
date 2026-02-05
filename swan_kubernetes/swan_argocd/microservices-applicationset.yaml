@@ -1,0 +1,45 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: microservices
+  namespace: argocd
+spec:
+  generators:
+    - git:
+        repoURL: git@github.com:swanpyaetun/swan_polyglot-microservices-application.git
+        targetRevision: main
+        directories:
+          - path: swan_kubernetes/swan_helm/swan_microservices/*
+  template:
+    metadata:
+      name: '{{path.basename}}'
+      annotations:
+        argocd.argoproj.io/depends-on: platform
+        # Argo CD Image Updater
+        argocd-image-updater.argoproj.io/image-list: swan_ecr_image=655355946217.dkr.ecr.ap-southeast-1.amazonaws.com/swan_polyglot-microservices-application/{{path.basename}}
+        argocd-image-updater.argoproj.io/swan_ecr_image.update-strategy: latest
+        argocd-image-updater.argoproj.io/write-back-method: git
+      finalizers:
+        - resources-finalizer.argocd.argoproj.io/foreground
+    spec:
+      project: default
+      source:
+        repoURL: git@github.com:swanpyaetun/swan_polyglot-microservices-application.git
+        targetRevision: main
+        path: '{{path}}'
+        helm:
+          valueFiles:
+            - values.yaml
+      destination:
+        server: https://kubernetes.default.svc
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+          allowEmpty: false
+        syncOptions:
+          - Validate=true
+          - CreateNamespace=false
+          - PrunePropagationPolicy=foreground
+          - PruneLast=true

@@ -16,10 +16,6 @@ spec:
       name: '{{path.basename}}'
       annotations:
         argocd.argoproj.io/depends-on: platform
-        # Argo CD Image Updater
-        argocd-image-updater.argoproj.io/image-list: swan_ecr_image=655355946217.dkr.ecr.ap-southeast-1.amazonaws.com/swan_polyglot-microservices-application/{{path.basename}}
-        argocd-image-updater.argoproj.io/swan_ecr_image.update-strategy: latest
-        argocd-image-updater.argoproj.io/write-back-method: git
       finalizers:
         - resources-finalizer.argocd.argoproj.io/foreground
     spec:

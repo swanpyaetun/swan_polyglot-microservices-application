@@ -5,13 +5,13 @@ metadata:
   annotations:
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/target-type: ip
-    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:ap-southeast-1:655355946217:certificate/38436574-e746-4df9-a92c-8af211b6c7b8
+    alb.ingress.kubernetes.io/certificate-arn: {{ .Values.swan_ingress.swan_acm_certificate_arn }}
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP":80}, {"HTTPS":443}]'
     alb.ingress.kubernetes.io/ssl-redirect: "443"
 spec:
   ingressClassName: alb
   rules:
-    - host: www.swanpyaetun.com
+    - host: {{ .Values.swan_ingress.swan_host }}
       http:
         paths:
           - path: "/"

@@ -5,130 +5,206 @@ metadata:
   namespace: argocd
 spec:
   namespace: argocd
-  writeBackConfig:
-    method: git
-    gitConfig:
-      repository: git@github.com:swanpyaetun/swan_polyglot-microservices-application.git
-      branch: main
-      writeBackTarget: helmvalues:./values.yaml
+  commonUpdateSettings:
+    updateStrategy: newest-build
   applicationRefs:
     - namePattern: "accounting"
+      writeBackConfig:
+        method: git
+        gitConfig:
+          repository: git@github.com:swanpyaetun/swan_polyglot-microservices-application.git
+          branch: main
+          writeBackTarget: helmvalues:swan_kubernetes/swan_helm/swan_microservices/accounting/values.yaml
       images:
         - alias: image
           imageName: 655355946217.dkr.ecr.ap-southeast-1.amazonaws.com/swan_polyglot-microservices-application/accounting
-          commonUpdateSettings:
-            updateStrategy: newest-build
     - namePattern: "ad"
+      writeBackConfig:
+        method: git
+        gitConfig:
+          repository: git@github.com:swanpyaetun/swan_polyglot-microservices-application.git
+          branch: main
+          writeBackTarget: helmvalues:swan_kubernetes/swan_helm/swan_microservices/ad/values.yaml
       images:
         - alias: image
           imageName: 655355946217.dkr.ecr.ap-southeast-1.amazonaws.com/swan_polyglot-microservices-application/ad
-          commonUpdateSettings:
-            updateStrategy: newest-build
     - namePattern: "cart"
+      writeBackConfig:
+        method: git
+        gitConfig:
+          repository: git@github.com:swanpyaetun/swan_polyglot-microservices-application.git
+          branch: main
+          writeBackTarget: helmvalues:swan_kubernetes/swan_helm/swan_microservices/cart/values.yaml
       images:
         - alias: image
           imageName: 655355946217.dkr.ecr.ap-southeast-1.amazonaws.com/swan_polyglot-microservices-application/cart
-          commonUpdateSettings:
-            updateStrategy: newest-build
     - namePattern: "checkout"
+      writeBackConfig:
+        method: git
+        gitConfig:
+          repository: git@github.com:swanpyaetun/swan_polyglot-microservices-application.git
+          branch: main
+          writeBackTarget: helmvalues:swan_kubernetes/swan_helm/swan_microservices/checkout/values.yaml
       images:
         - alias: image
           imageName: 655355946217.dkr.ecr.ap-southeast-1.amazonaws.com/swan_polyglot-microservices-application/checkout
-          commonUpdateSettings:
-            updateStrategy: newest-build
     - namePattern: "currency"
+      writeBackConfig:
+        method: git
+        gitConfig:
+          repository: git@github.com:swanpyaetun/swan_polyglot-microservices-application.git
+          branch: main
+          writeBackTarget: helmvalues:swan_kubernetes/swan_helm/swan_microservices/currency/values.yaml
       images:
         - alias: image
           imageName: 655355946217.dkr.ecr.ap-southeast-1.amazonaws.com/swan_polyglot-microservices-application/currency
-          commonUpdateSettings:
-            updateStrategy: newest-build
     - namePattern: "email"
+      writeBackConfig:
+        method: git
+        gitConfig:
+          repository: git@github.com:swanpyaetun/swan_polyglot-microservices-application.git
+          branch: main
+          writeBackTarget: helmvalues:swan_kubernetes/swan_helm/swan_microservices/email/values.yaml
       images:
         - alias: image
           imageName: 655355946217.dkr.ecr.ap-southeast-1.amazonaws.com/swan_polyglot-microservices-application/email
-          commonUpdateSettings:
-            updateStrategy: newest-build
     - namePattern: "flagd"
+      writeBackConfig:
+        method: git
+        gitConfig:
+          repository: git@github.com:swanpyaetun/swan_polyglot-microservices-application.git
+          branch: main
+          writeBackTarget: helmvalues:swan_kubernetes/swan_helm/swan_microservices/flagd/values.yaml
       images:
         - alias: image
           imageName: 655355946217.dkr.ecr.ap-southeast-1.amazonaws.com/swan_polyglot-microservices-application/flagd
-          commonUpdateSettings:
-            updateStrategy: newest-build
     - namePattern: "fraud-detection"
+      writeBackConfig:
+        method: git
+        gitConfig:
+          repository: git@github.com:swanpyaetun/swan_polyglot-microservices-application.git
+          branch: main
+          writeBackTarget: helmvalues:swan_kubernetes/swan_helm/swan_microservices/fraud-detection/values.yaml
       images:
         - alias: image
           imageName: 655355946217.dkr.ecr.ap-southeast-1.amazonaws.com/swan_polyglot-microservices-application/fraud-detection
-          commonUpdateSettings:
-            updateStrategy: newest-build
     - namePattern: "frontend"
+      writeBackConfig:
+        method: git
+        gitConfig:
+          repository: git@github.com:swanpyaetun/swan_polyglot-microservices-application.git
+          branch: main
+          writeBackTarget: helmvalues:swan_kubernetes/swan_helm/swan_microservices/frontend/values.yaml
       images:
         - alias: image
           imageName: 655355946217.dkr.ecr.ap-southeast-1.amazonaws.com/swan_polyglot-microservices-application/frontend
-          commonUpdateSettings:
-            updateStrategy: newest-build
     - namePattern: "frontend-proxy"
+      writeBackConfig:
+        method: git
+        gitConfig:
+          repository: git@github.com:swanpyaetun/swan_polyglot-microservices-application.git
+          branch: main
+          writeBackTarget: helmvalues:swan_kubernetes/swan_helm/swan_microservices/frontend-proxy/values.yaml
       images:
         - alias: image
           imageName: 655355946217.dkr.ecr.ap-southeast-1.amazonaws.com/swan_polyglot-microservices-application/frontend-proxy
-          commonUpdateSettings:
-            updateStrategy: newest-build
     - namePattern: "image-provider"
+      writeBackConfig:
+        method: git
+        gitConfig:
+          repository: git@github.com:swanpyaetun/swan_polyglot-microservices-application.git
+          branch: main
+          writeBackTarget: helmvalues:swan_kubernetes/swan_helm/swan_microservices/image-provider/values.yaml
       images:
         - alias: image
           imageName: 655355946217.dkr.ecr.ap-southeast-1.amazonaws.com/swan_polyglot-microservices-application/image-provider
-          commonUpdateSettings:
-            updateStrategy: newest-build
     - namePattern: "kafka"
+      writeBackConfig:
+        method: git
+        gitConfig:
+          repository: git@github.com:swanpyaetun/swan_polyglot-microservices-application.git
+          branch: main
+          writeBackTarget: helmvalues:swan_kubernetes/swan_helm/swan_microservices/kafka/values.yaml
       images:
         - alias: image
           imageName: 655355946217.dkr.ecr.ap-southeast-1.amazonaws.com/swan_polyglot-microservices-application/kafka
-          commonUpdateSettings:
-            updateStrategy: newest-build
     - namePattern: "llm"
+      writeBackConfig:
+        method: git
+        gitConfig:
+          repository: git@github.com:swanpyaetun/swan_polyglot-microservices-application.git
+          branch: main
+          writeBackTarget: helmvalues:swan_kubernetes/swan_helm/swan_microservices/llm/values.yaml
       images:
         - alias: image
           imageName: 655355946217.dkr.ecr.ap-southeast-1.amazonaws.com/swan_polyglot-microservices-application/llm
-          commonUpdateSettings:
-            updateStrategy: newest-build
     - namePattern: "load-generator"
+      writeBackConfig:
+        method: git
+        gitConfig:
+          repository: git@github.com:swanpyaetun/swan_polyglot-microservices-application.git
+          branch: main
+          writeBackTarget: helmvalues:swan_kubernetes/swan_helm/swan_microservices/load-generator/values.yaml
       images:
         - alias: image
           imageName: 655355946217.dkr.ecr.ap-southeast-1.amazonaws.com/swan_polyglot-microservices-application/load-generator
-          commonUpdateSettings:
-            updateStrategy: newest-build
     - namePattern: "payment"
+      writeBackConfig:
+        method: git
+        gitConfig:
+          repository: git@github.com:swanpyaetun/swan_polyglot-microservices-application.git
+          branch: main
+          writeBackTarget: helmvalues:swan_kubernetes/swan_helm/swan_microservices/payment/values.yaml
       images:
         - alias: image
           imageName: 655355946217.dkr.ecr.ap-southeast-1.amazonaws.com/swan_polyglot-microservices-application/payment
-          commonUpdateSettings:
-            updateStrategy: newest-build
     - namePattern: "product-catalog"
+      writeBackConfig:
+        method: git
+        gitConfig:
+          repository: git@github.com:swanpyaetun/swan_polyglot-microservices-application.git
+          branch: main
+          writeBackTarget: helmvalues:swan_kubernetes/swan_helm/swan_microservices/product-catalog/values.yaml
       images:
         - alias: image
           imageName: 655355946217.dkr.ecr.ap-southeast-1.amazonaws.com/swan_polyglot-microservices-application/product-catalog
-          commonUpdateSettings:
-            updateStrategy: newest-build
     - namePattern: "product-reviews"
+      writeBackConfig:
+        method: git
+        gitConfig:
+          repository: git@github.com:swanpyaetun/swan_polyglot-microservices-application.git
+          branch: main
+          writeBackTarget: helmvalues:swan_kubernetes/swan_helm/swan_microservices/product-reviews/values.yaml
       images:
         - alias: image
           imageName: 655355946217.dkr.ecr.ap-southeast-1.amazonaws.com/swan_polyglot-microservices-application/product-reviews
-          commonUpdateSettings:
-            updateStrategy: newest-build
     - namePattern: "quote"
+      writeBackConfig:
+        method: git
+        gitConfig:
+          repository: git@github.com:swanpyaetun/swan_polyglot-microservices-application.git
+          branch: main
+          writeBackTarget: helmvalues:swan_kubernetes/swan_helm/swan_microservices/quote/values.yaml
       images:
         - alias: image
           imageName: 655355946217.dkr.ecr.ap-southeast-1.amazonaws.com/swan_polyglot-microservices-application/quote
-          commonUpdateSettings:
-            updateStrategy: newest-build
     - namePattern: "recommendation"
+      writeBackConfig:
+        method: git
+        gitConfig:
+          repository: git@github.com:swanpyaetun/swan_polyglot-microservices-application.git
+          branch: main
+          writeBackTarget: helmvalues:swan_kubernetes/swan_helm/swan_microservices/recommendation/values.yaml
       images:
         - alias: image
           imageName: 655355946217.dkr.ecr.ap-southeast-1.amazonaws.com/swan_polyglot-microservices-application/recommendation
-          commonUpdateSettings:
-            updateStrategy: newest-build
     - namePattern: "shipping"
+      writeBackConfig:
+        method: git
+        gitConfig:
+          repository: git@github.com:swanpyaetun/swan_polyglot-microservices-application.git
+          branch: main
+          writeBackTarget: helmvalues:swan_kubernetes/swan_helm/swan_microservices/shipping/values.yaml
       images:
         - alias: image
           imageName: 655355946217.dkr.ecr.ap-southeast-1.amazonaws.com/swan_polyglot-microservices-application/shipping
-          commonUpdateSettings:
-            updateStrategy: newest-build

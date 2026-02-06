@@ -73,7 +73,7 @@ spec:
     - namePattern: fraud-detection
       images:
         - alias: fraud-detection
-          imageName: 655355946217.dkr.ecr.ap-southeast-1.amazonaws.com/swan_polyglot-microservices-application/fruad-detection
+          imageName: 655355946217.dkr.ecr.ap-southeast-1.amazonaws.com/swan_polyglot-microservices-application/fraud-detection
           manifestTargets:
             helm:
               name: image.repository

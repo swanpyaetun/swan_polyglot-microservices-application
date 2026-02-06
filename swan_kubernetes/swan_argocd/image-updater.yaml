@@ -18,9 +18,10 @@ spec:
       images:
         - alias: image
           imageName: 655355946217.dkr.ecr.ap-southeast-1.amazonaws.com/swan_polyglot-microservices-application/ad
-          helm:
-            imageName: image.repository
-            imageTag: image.tag
+          manifestTargets:
+            helm:
+              name: image.repository
+              tag: image.tag
     - namePattern: "cart"
       writeBackConfig:
         method: git
@@ -31,6 +32,7 @@ spec:
       images:
         - alias: image
           imageName: 655355946217.dkr.ecr.ap-southeast-1.amazonaws.com/swan_polyglot-microservices-application/cart
-          helm:
-            imageName: image.repository
-            imageTag: image.tag
+          manifestTargets:
+            helm:
+              name: image.repository
+              tag: image.tag

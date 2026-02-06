@@ -14,101 +14,121 @@ spec:
   applicationRefs:
     - namePattern: "accounting"
       images:
-        - imageName: 655355946217.dkr.ecr.ap-southeast-1.amazonaws.com/swan_polyglot-microservices-application/accounting
+        - alias: image
+          imageName: 655355946217.dkr.ecr.ap-southeast-1.amazonaws.com/swan_polyglot-microservices-application/accounting
           commonUpdateSettings:
             updateStrategy: newest-build
     - namePattern: "ad"
       images:
-        - imageName: 655355946217.dkr.ecr.ap-southeast-1.amazonaws.com/swan_polyglot-microservices-application/ad
+        - alias: image
+          imageName: 655355946217.dkr.ecr.ap-southeast-1.amazonaws.com/swan_polyglot-microservices-application/ad
           commonUpdateSettings:
             updateStrategy: newest-build
     - namePattern: "cart"
       images:
-        - imageName: 655355946217.dkr.ecr.ap-southeast-1.amazonaws.com/swan_polyglot-microservices-application/cart
+        - alias: image
+          imageName: 655355946217.dkr.ecr.ap-southeast-1.amazonaws.com/swan_polyglot-microservices-application/cart
           commonUpdateSettings:
             updateStrategy: newest-build
     - namePattern: "checkout"
       images:
-        - imageName: 655355946217.dkr.ecr.ap-southeast-1.amazonaws.com/swan_polyglot-microservices-application/checkout
+        - alias: image
+          imageName: 655355946217.dkr.ecr.ap-southeast-1.amazonaws.com/swan_polyglot-microservices-application/checkout
           commonUpdateSettings:
             updateStrategy: newest-build
     - namePattern: "currency"
       images:
-        - imageName: 655355946217.dkr.ecr.ap-southeast-1.amazonaws.com/swan_polyglot-microservices-application/currency
+        - alias: image
+          imageName: 655355946217.dkr.ecr.ap-southeast-1.amazonaws.com/swan_polyglot-microservices-application/currency
           commonUpdateSettings:
             updateStrategy: newest-build
     - namePattern: "email"
       images:
-        - imageName: 655355946217.dkr.ecr.ap-southeast-1.amazonaws.com/swan_polyglot-microservices-application/email
+        - alias: image
+          imageName: 655355946217.dkr.ecr.ap-southeast-1.amazonaws.com/swan_polyglot-microservices-application/email
           commonUpdateSettings:
             updateStrategy: newest-build
     - namePattern: "flagd"
       images:
-        - imageName: 655355946217.dkr.ecr.ap-southeast-1.amazonaws.com/swan_polyglot-microservices-application/flagd
+        - alias: image
+          imageName: 655355946217.dkr.ecr.ap-southeast-1.amazonaws.com/swan_polyglot-microservices-application/flagd
           commonUpdateSettings:
             updateStrategy: newest-build
     - namePattern: "fraud-detection"
       images:
-        - imageName: 655355946217.dkr.ecr.ap-southeast-1.amazonaws.com/swan_polyglot-microservices-application/fraud-detection
+        - alias: image
+          imageName: 655355946217.dkr.ecr.ap-southeast-1.amazonaws.com/swan_polyglot-microservices-application/fraud-detection
           commonUpdateSettings:
             updateStrategy: newest-build
     - namePattern: "frontend"
       images:
-        - imageName: 655355946217.dkr.ecr.ap-southeast-1.amazonaws.com/swan_polyglot-microservices-application/frontend
+        - alias: image
+          imageName: 655355946217.dkr.ecr.ap-southeast-1.amazonaws.com/swan_polyglot-microservices-application/frontend
           commonUpdateSettings:
             updateStrategy: newest-build
     - namePattern: "frontend-proxy"
       images:
-        - imageName: 655355946217.dkr.ecr.ap-southeast-1.amazonaws.com/swan_polyglot-microservices-application/frontend-proxy
+        - alias: image
+          imageName: 655355946217.dkr.ecr.ap-southeast-1.amazonaws.com/swan_polyglot-microservices-application/frontend-proxy
           commonUpdateSettings:
             updateStrategy: newest-build
     - namePattern: "image-provider"
       images:
-        - imageName: 655355946217.dkr.ecr.ap-southeast-1.amazonaws.com/swan_polyglot-microservices-application/image-provider
+        - alias: image
+          imageName: 655355946217.dkr.ecr.ap-southeast-1.amazonaws.com/swan_polyglot-microservices-application/image-provider
           commonUpdateSettings:
             updateStrategy: newest-build
     - namePattern: "kafka"
       images:
-        - imageName: 655355946217.dkr.ecr.ap-southeast-1.amazonaws.com/swan_polyglot-microservices-application/kafka
+        - alias: image
+          imageName: 655355946217.dkr.ecr.ap-southeast-1.amazonaws.com/swan_polyglot-microservices-application/kafka
           commonUpdateSettings:
             updateStrategy: newest-build
     - namePattern: "llm"
       images:
-        - imageName: 655355946217.dkr.ecr.ap-southeast-1.amazonaws.com/swan_polyglot-microservices-application/llm
+        - alias: image
+          imageName: 655355946217.dkr.ecr.ap-southeast-1.amazonaws.com/swan_polyglot-microservices-application/llm
           commonUpdateSettings:
             updateStrategy: newest-build
     - namePattern: "load-generator"
       images:
-        - imageName: 655355946217.dkr.ecr.ap-southeast-1.amazonaws.com/swan_polyglot-microservices-application/load-generator
+        - alias: image
+          imageName: 655355946217.dkr.ecr.ap-southeast-1.amazonaws.com/swan_polyglot-microservices-application/load-generator
           commonUpdateSettings:
             updateStrategy: newest-build
     - namePattern: "payment"
       images:
-        - imageName: 655355946217.dkr.ecr.ap-southeast-1.amazonaws.com/swan_polyglot-microservices-application/payment
+        - alias: image
+          imageName: 655355946217.dkr.ecr.ap-southeast-1.amazonaws.com/swan_polyglot-microservices-application/payment
           commonUpdateSettings:
             updateStrategy: newest-build
     - namePattern: "product-catalog"
       images:
-        - imageName: 655355946217.dkr.ecr.ap-southeast-1.amazonaws.com/swan_polyglot-microservices-application/product-catalog
+        - alias: image
+          imageName: 655355946217.dkr.ecr.ap-southeast-1.amazonaws.com/swan_polyglot-microservices-application/product-catalog
           commonUpdateSettings:
             updateStrategy: newest-build
     - namePattern: "product-reviews"
       images:
-        - imageName: 655355946217.dkr.ecr.ap-southeast-1.amazonaws.com/swan_polyglot-microservices-application/product-reviews
+        - alias: image
+          imageName: 655355946217.dkr.ecr.ap-southeast-1.amazonaws.com/swan_polyglot-microservices-application/product-reviews
           commonUpdateSettings:
             updateStrategy: newest-build
     - namePattern: "quote"
       images:
-        - imageName: 655355946217.dkr.ecr.ap-southeast-1.amazonaws.com/swan_polyglot-microservices-application/quote
+        - alias: image
+          imageName: 655355946217.dkr.ecr.ap-southeast-1.amazonaws.com/swan_polyglot-microservices-application/quote
           commonUpdateSettings:
             updateStrategy: newest-build
     - namePattern: "recommendation"
       images:
-        - imageName: 655355946217.dkr.ecr.ap-southeast-1.amazonaws.com/swan_polyglot-microservices-application/recommendation
+        - alias: image
+          imageName: 655355946217.dkr.ecr.ap-southeast-1.amazonaws.com/swan_polyglot-microservices-application/recommendation
           commonUpdateSettings:
             updateStrategy: newest-build
     - namePattern: "shipping"
       images:
-        - imageName: 655355946217.dkr.ecr.ap-southeast-1.amazonaws.com/swan_polyglot-microservices-application/shipping
+        - alias: image
+          imageName: 655355946217.dkr.ecr.ap-southeast-1.amazonaws.com/swan_polyglot-microservices-application/shipping
           commonUpdateSettings:
             updateStrategy: newest-build

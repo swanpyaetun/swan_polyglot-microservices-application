@@ -7,31 +7,169 @@ spec:
   namespace: argocd
   commonUpdateSettings:
     updateStrategy: newest-build
+  writeBackConfig:
+    method: git
+    gitConfig:
+      repository: git@github.com:swanpyaetun/swan_polyglot-microservices-application.git
+      branch: main
+      writeBackTarget: helmvalues:./values.yaml
   applicationRefs:
-    - namePattern: "ad"
-      writeBackConfig:
-        method: git
-        gitConfig:
-          repository: git@github.com:swanpyaetun/swan_polyglot-microservices-application.git
-          branch: main
-          writeBackTarget: helmvalues:swan_kubernetes/swan_helm/swan_microservices/ad/values.yaml
+    - namePattern: accounting
       images:
-        - alias: image
+        - alias: accounting
+          imageName: 655355946217.dkr.ecr.ap-southeast-1.amazonaws.com/swan_polyglot-microservices-application/accounting
+          manifestTargets:
+            helm:
+              name: image.repository
+              tag: image.tag
+    - namePattern: ad
+      images:
+        - alias: ad
           imageName: 655355946217.dkr.ecr.ap-southeast-1.amazonaws.com/swan_polyglot-microservices-application/ad
           manifestTargets:
             helm:
               name: image.repository
               tag: image.tag
-    - namePattern: "cart"
-      writeBackConfig:
-        method: git
-        gitConfig:
-          repository: git@github.com:swanpyaetun/swan_polyglot-microservices-application.git
-          branch: main
-          writeBackTarget: helmvalues:swan_kubernetes/swan_helm/swan_microservices/cart/values.yaml
+    - namePattern: cart
       images:
-        - alias: image
+        - alias: cart
           imageName: 655355946217.dkr.ecr.ap-southeast-1.amazonaws.com/swan_polyglot-microservices-application/cart
+          manifestTargets:
+            helm:
+              name: image.repository
+              tag: image.tag
+    - namePattern: checkout
+      images:
+        - alias: checkout
+          imageName: 655355946217.dkr.ecr.ap-southeast-1.amazonaws.com/swan_polyglot-microservices-application/checkout
+          manifestTargets:
+            helm:
+              name: image.repository
+              tag: image.tag
+    - namePattern: currency
+      images:
+        - alias: currency
+          imageName: 655355946217.dkr.ecr.ap-southeast-1.amazonaws.com/swan_polyglot-microservices-application/currency
+          manifestTargets:
+            helm:
+              name: image.repository
+              tag: image.tag
+    - namePattern: email
+      images:
+        - alias: email
+          imageName: 655355946217.dkr.ecr.ap-southeast-1.amazonaws.com/swan_polyglot-microservices-application/email
+          manifestTargets:
+            helm:
+              name: image.repository
+              tag: image.tag
+    - namePattern: flagd
+      images:
+        - alias: flagd
+          imageName: 655355946217.dkr.ecr.ap-southeast-1.amazonaws.com/swan_polyglot-microservices-application/flagd
+          manifestTargets:
+            helm:
+              name: image.repository
+              tag: image.tag
+    - namePattern: fraud-detection
+      images:
+        - alias: fraud-detection
+          imageName: 655355946217.dkr.ecr.ap-southeast-1.amazonaws.com/swan_polyglot-microservices-application/fruad-detection
+          manifestTargets:
+            helm:
+              name: image.repository
+              tag: image.tag
+    - namePattern: frontend
+      images:
+        - alias: frontend
+          imageName: 655355946217.dkr.ecr.ap-southeast-1.amazonaws.com/swan_polyglot-microservices-application/frontend
+          manifestTargets:
+            helm:
+              name: image.repository
+              tag: image.tag
+    - namePattern: frontend-proxy
+      images:
+        - alias: frontend-proxy
+          imageName: 655355946217.dkr.ecr.ap-southeast-1.amazonaws.com/swan_polyglot-microservices-application/frontend-proxy
+          manifestTargets:
+            helm:
+              name: image.repository
+              tag: image.tag
+    - namePattern: image-provider
+      images:
+        - alias: image-provider
+          imageName: 655355946217.dkr.ecr.ap-southeast-1.amazonaws.com/swan_polyglot-microservices-application/image-provider
+          manifestTargets:
+            helm:
+              name: image.repository
+              tag: image.tag
+    - namePattern: kafka
+      images:
+        - alias: kafka
+          imageName: 655355946217.dkr.ecr.ap-southeast-1.amazonaws.com/swan_polyglot-microservices-application/kafka
+          manifestTargets:
+            helm:
+              name: image.repository
+              tag: image.tag
+    - namePattern: llm
+      images:
+        - alias: llm
+          imageName: 655355946217.dkr.ecr.ap-southeast-1.amazonaws.com/swan_polyglot-microservices-application/llm
+          manifestTargets:
+            helm:
+              name: image.repository
+              tag: image.tag
+    - namePattern: load-generator
+      images:
+        - alias: load-generator
+          imageName: 655355946217.dkr.ecr.ap-southeast-1.amazonaws.com/swan_polyglot-microservices-application/load-generator
+          manifestTargets:
+            helm:
+              name: image.repository
+              tag: image.tag
+    - namePattern: payment
+      images:
+        - alias: payment
+          imageName: 655355946217.dkr.ecr.ap-southeast-1.amazonaws.com/swan_polyglot-microservices-application/payment
+          manifestTargets:
+            helm:
+              name: image.repository
+              tag: image.tag
+    - namePattern: product-catalog
+      images:
+        - alias: product-catalog
+          imageName: 655355946217.dkr.ecr.ap-southeast-1.amazonaws.com/swan_polyglot-microservices-application/product-catalog
+          manifestTargets:
+            helm:
+              name: image.repository
+              tag: image.tag
+    - namePattern: product-reviews
+      images:
+        - alias: product-reviews
+          imageName: 655355946217.dkr.ecr.ap-southeast-1.amazonaws.com/swan_polyglot-microservices-application/product-reviews
+          manifestTargets:
+            helm:
+              name: image.repository
+              tag: image.tag
+    - namePattern: quote
+      images:
+        - alias: quote
+          imageName: 655355946217.dkr.ecr.ap-southeast-1.amazonaws.com/swan_polyglot-microservices-application/quote
+          manifestTargets:
+            helm:
+              name: image.repository
+              tag: image.tag
+    - namePattern: recommendation
+      images:
+        - alias: recommendation
+          imageName: 655355946217.dkr.ecr.ap-southeast-1.amazonaws.com/swan_polyglot-microservices-application/recommendation
+          manifestTargets:
+            helm:
+              name: image.repository
+              tag: image.tag
+    - namePattern: shipping
+      images:
+        - alias: shipping
+          imageName: 655355946217.dkr.ecr.ap-southeast-1.amazonaws.com/swan_polyglot-microservices-application/shipping
           manifestTargets:
             helm:
               name: image.repository

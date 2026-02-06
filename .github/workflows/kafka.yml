@@ -6,11 +6,15 @@ on:
       - main
     #paths:
     #  - 'src/kafka/**'
+    paths-ignore:
+      - 'swan_kubernetes/**'
   pull_request:
     branches:
       - main
     #paths:
     #  - 'src/kafka/**'
+    paths-ignore:
+      - 'swan_kubernetes/**'
   workflow_dispatch:
 
 jobs:

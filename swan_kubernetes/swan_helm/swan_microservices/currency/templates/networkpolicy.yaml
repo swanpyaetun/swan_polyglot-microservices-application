@@ -1,0 +1,29 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: currency
+spec:
+  podSelector:
+    matchLabels:
+      opentelemetry.io/name: currency
+  policyTypes:
+  - Ingress
+  ingress:
+  - from:
+    - namespaceSelector:
+        matchLabels:
+          name: otel-demo
+      podSelector:
+        matchLabels:
+          opentelemetry.io/name: frontend
+  - from:
+    - namespaceSelector:
+        matchLabels:
+          name: otel-demo
+      podSelector:
+        matchLabels:
+          opentelemetry.io/name: checkout
+    ports:
+    - protocol: TCP
+      port: 8080

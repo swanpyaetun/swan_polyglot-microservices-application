@@ -9,6 +9,7 @@ spec:
       opentelemetry.io/name: product-catalog
   policyTypes:
   - Ingress
+  - Egress
   ingress:
   - from:
     - namespaceSelector:
@@ -38,3 +39,14 @@ spec:
     ports:
     - protocol: TCP
       port: 8080
+  egress:
+  - to:
+    - namespaceSelector:
+        matchLabels:
+          name: otel-demo
+      podSelector:
+        matchLabels:
+          opentelemetry.io/name: postgresql
+    ports:
+    - protocol: TCP
+      port: 5432

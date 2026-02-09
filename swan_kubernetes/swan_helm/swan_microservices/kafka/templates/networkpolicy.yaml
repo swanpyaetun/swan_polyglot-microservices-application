@@ -21,13 +21,6 @@ spec:
     ports:
     - protocol: TCP
       port: 9092
-  - from:
-    - podSelector:
-        matchLabels:
-          opentelemetry.io/name: kafka
-    ports:
-    - protocol: TCP
-      port: 9093
   egress:
   - to:
     - namespaceSelector:

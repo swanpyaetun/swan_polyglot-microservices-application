@@ -43,12 +43,10 @@ spec:
   - to:
     - namespaceSelector:
         matchLabels:
-          kubernetes.io/metadata.name: kube-system
+          name: otel-demo
       podSelector:
         matchLabels:
-          k8s-app: kube-dns
+          opentelemetry.io/name: postgresql
     ports:
-    - protocol: UDP
-      port: 53
     - protocol: TCP
-      port: 53
+      port: 5432

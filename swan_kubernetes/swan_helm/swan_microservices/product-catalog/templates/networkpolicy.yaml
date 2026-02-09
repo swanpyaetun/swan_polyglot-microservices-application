@@ -39,14 +39,3 @@ spec:
     ports:
     - protocol: TCP
       port: 8080
-  egress:
-  - to:
-    - namespaceSelector:
-        matchLabels:
-          name: otel-demo
-      podSelector:
-        matchLabels:
-          opentelemetry.io/name: postgresql
-    ports:
-    - protocol: TCP
-      port: 5432

@@ -18,16 +18,21 @@ spec:
       podSelector:
         matchLabels:
           opentelemetry.io/name: checkout
+    - namespaceSelector:
+        matchLabels:
+          name: otel-demo
+      podSelector:
+        matchLabels:
+          opentelemetry.io/name: accounting
+    - namespaceSelector:
+        matchLabels:
+          name: otel-demo
+      podSelector:
+        matchLabels:
+          opentelemetry.io/name: fraud-detection
     ports:
     - protocol: TCP
       port: 9092
-  - from:
-    - podSelector:
-        matchLabels:
-          opentelemetry.io/name: kafka
-    ports:
-    - protocol: TCP
-      port: 9093
   egress:
   - to:
     - namespaceSelector:

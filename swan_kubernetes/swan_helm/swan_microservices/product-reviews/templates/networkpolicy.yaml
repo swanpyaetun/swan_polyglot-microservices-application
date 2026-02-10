@@ -14,7 +14,7 @@ spec:
   - from:
     - namespaceSelector:
         matchLabels:
-          name: otel-demo
+          kubernetes.io/metadata.name: otel-demo
       podSelector:
         matchLabels:
           opentelemetry.io/name: frontend
@@ -25,7 +25,7 @@ spec:
   - to:
     - namespaceSelector:
         matchLabels:
-          name: otel-demo
+          kubernetes.io/metadata.name: otel-demo
       podSelector:
         matchLabels:
           opentelemetry.io/name: flagd
@@ -35,7 +35,7 @@ spec:
   - to:
     - namespaceSelector:
         matchLabels:
-          name: otel-demo
+          kubernetes.io/metadata.name: otel-demo
       podSelector:
         matchLabels:
           opentelemetry.io/name: product-catalog
@@ -45,7 +45,7 @@ spec:
   - to:
     - namespaceSelector:
         matchLabels:
-          name: otel-demo
+          kubernetes.io/metadata.name: otel-demo
       podSelector:
         matchLabels:
           opentelemetry.io/name: llm
@@ -55,7 +55,7 @@ spec:
   - to:
     - namespaceSelector:
         matchLabels:
-          name: otel-demo
+          kubernetes.io/metadata.name: otel-demo
       podSelector:
         matchLabels:
           opentelemetry.io/name: postgresql

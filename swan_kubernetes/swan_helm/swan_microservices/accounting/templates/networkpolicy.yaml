@@ -14,7 +14,7 @@ spec:
   - from:
     - namespaceSelector:
         matchLabels:
-          name: otel-demo
+          kubernetes.io/metadata.name: otel-demo
       podSelector:
         matchLabels:
           opentelemetry.io/name: kafka
@@ -25,7 +25,7 @@ spec:
   - to:
     - namespaceSelector:
         matchLabels:
-          name: otel-demo
+          kubernetes.io/metadata.name: otel-demo
       podSelector:
         matchLabels:
           opentelemetry.io/name: postgresql
@@ -35,7 +35,7 @@ spec:
   - to:
     - namespaceSelector:
         matchLabels:
-          name: otel-demo
+          kubernetes.io/metadata.name: otel-demo
       podSelector:
         matchLabels:
           opentelemetry.io/name: kafka

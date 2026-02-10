@@ -21,8 +21,6 @@ spec:
     - protocol: TCP
       port: 8013
     - protocol: TCP
-      port: 8016
-    - protocol: TCP
       port: 4000
   - from:
     - namespaceSelector:

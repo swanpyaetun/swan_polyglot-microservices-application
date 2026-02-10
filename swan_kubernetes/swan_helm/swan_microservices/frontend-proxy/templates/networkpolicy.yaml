@@ -50,6 +50,16 @@ spec:
   - to:
     - namespaceSelector:
         matchLabels:
+          name: otel-demo
+      podSelector:
+        matchLabels:
+          opentelemetry.io/name: load-generator
+    ports:
+    - protocol: TCP
+      port: 8089
+  - to:
+    - namespaceSelector:
+        matchLabels:
           kubernetes.io/metadata.name: kube-system
       podSelector:
         matchLabels:

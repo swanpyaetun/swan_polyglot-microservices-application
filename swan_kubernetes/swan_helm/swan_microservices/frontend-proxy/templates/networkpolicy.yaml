@@ -11,16 +11,7 @@ spec:
   - Ingress
   - Egress
   ingress:
-  - from:
-    - ipBlock:
-        cidr: {{ .Values.swan_vpc.swwan_vpc_cidr_block }}
-    - namespaceSelector:
-        matchLabels:
-          name: otel-demo
-      podSelector:
-        matchLabels:
-          opentelemetry.io/name: load-generator
-    ports:
+  - ports:
     - protocol: TCP
       port: 8080
   egress:

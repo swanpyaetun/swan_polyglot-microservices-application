@@ -8,5 +8,3 @@ image:
 swan_ingress:
   swan_host: www.swanpyaetun.com
   swan_acm_certificate_arn: arn:aws:acm:ap-southeast-1:655355946217:certificate/38436574-e746-4df9-a92c-8af211b6c7b8
-swan_vpc:
-  swan_vpc_cidr_block: 10.0.0.0/16

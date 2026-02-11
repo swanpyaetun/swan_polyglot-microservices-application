@@ -14,7 +14,7 @@ spec:
   - from:
     - namespaceSelector:
         matchLabels:
-          name: otel-demo
+          kubernetes.io/metadata.name: otel-demo
       podSelector:
         matchLabels:
           opentelemetry.io/name: frontend-proxy
@@ -25,37 +25,37 @@ spec:
   - to:
     - namespaceSelector:
         matchLabels:
-          name: otel-demo
+          kubernetes.io/metadata.name: otel-demo
       podSelector:
         matchLabels:
           opentelemetry.io/name: ad
     - namespaceSelector:
         matchLabels:
-          name: otel-demo
+          kubernetes.io/metadata.name: otel-demo
       podSelector:
         matchLabels:
           opentelemetry.io/name: currency
     - namespaceSelector:
         matchLabels:
-          name: otel-demo
+          kubernetes.io/metadata.name: otel-demo
       podSelector:
         matchLabels:
           opentelemetry.io/name: cart
     - namespaceSelector:
         matchLabels:
-          name: otel-demo
+          kubernetes.io/metadata.name: otel-demo
       podSelector:
         matchLabels:
           opentelemetry.io/name: shipping
     - namespaceSelector:
         matchLabels:
-          name: otel-demo
+          kubernetes.io/metadata.name: otel-demo
       podSelector:
         matchLabels:
           opentelemetry.io/name: recommendation
     - namespaceSelector:
         matchLabels:
-          name: otel-demo
+          kubernetes.io/metadata.name: otel-demo
       podSelector:
         matchLabels:
           opentelemetry.io/name: product-catalog
@@ -65,7 +65,7 @@ spec:
   - to:
     - namespaceSelector:
         matchLabels:
-          name: otel-demo
+          kubernetes.io/metadata.name: otel-demo
       podSelector:
         matchLabels:
           opentelemetry.io/name: product-reviews

@@ -4,7 +4,7 @@
 
 image:
   repository: 655355946217.dkr.ecr.ap-southeast-1.amazonaws.com/swan_polyglot-microservices-application/frontend-proxy
-  tag: "21898788341"
+  tag: "21904652307"
 swan_ingress:
   swan_host: www.swanpyaetun.com
   swan_acm_certificate_arn: arn:aws:acm:ap-southeast-1:655355946217:certificate/38436574-e746-4df9-a92c-8af211b6c7b8

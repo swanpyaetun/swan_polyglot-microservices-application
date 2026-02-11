@@ -14,7 +14,7 @@ spec:
   - from:
     - namespaceSelector:
         matchLabels:
-          kubernetes.io/metadata.name: otel-demo
+          name: otel-demo
       podSelector:
         matchLabels:
           opentelemetry.io/name: frontend-proxy
@@ -25,7 +25,7 @@ spec:
   - to:
     - namespaceSelector:
         matchLabels:
-          kubernetes.io/metadata.name: otel-demo
+          name: otel-demo
       podSelector:
         matchLabels:
           opentelemetry.io/name: frontend-proxy

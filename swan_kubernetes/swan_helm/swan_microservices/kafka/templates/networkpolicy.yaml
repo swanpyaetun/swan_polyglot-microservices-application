@@ -14,19 +14,19 @@ spec:
   - from:
     - namespaceSelector:
         matchLabels:
-          kubernetes.io/metadata.name: otel-demo
+          name: otel-demo
       podSelector:
         matchLabels:
           opentelemetry.io/name: checkout
     - namespaceSelector:
         matchLabels:
-          kubernetes.io/metadata.name: otel-demo
+          name: otel-demo
       podSelector:
         matchLabels:
           opentelemetry.io/name: accounting
     - namespaceSelector:
         matchLabels:
-          kubernetes.io/metadata.name: otel-demo
+          name: otel-demo
       podSelector:
         matchLabels:
           opentelemetry.io/name: fraud-detection
@@ -37,13 +37,13 @@ spec:
   - to:
     - namespaceSelector:
         matchLabels:
-          kubernetes.io/metadata.name: otel-demo
+          name: otel-demo
       podSelector:
         matchLabels:
           opentelemetry.io/name: accounting
     - namespaceSelector:
         matchLabels:
-          kubernetes.io/metadata.name: otel-demo
+          name: otel-demo
       podSelector:
         matchLabels:
           opentelemetry.io/name: fraud-detection

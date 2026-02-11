@@ -1,0 +1,34 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: postgresql
+spec:
+  podSelector:
+    matchLabels:
+      opentelemetry.io/name: postgresql
+  policyTypes:
+  - Ingress
+  ingress:
+  - from:
+    - namespaceSelector:
+        matchLabels:
+          name: otel-demo
+      podSelector:
+        matchLabels:
+          opentelemetry.io/name: accounting
+    - namespaceSelector:
+        matchLabels:
+          name: otel-demo
+      podSelector:
+        matchLabels:
+          opentelemetry.io/name: product-reviews
+    - namespaceSelector:
+        matchLabels:
+          name: otel-demo
+      podSelector:
+        matchLabels:
+          opentelemetry.io/name: product-catalog
+    ports:
+    - protocol: TCP
+      port: 5432

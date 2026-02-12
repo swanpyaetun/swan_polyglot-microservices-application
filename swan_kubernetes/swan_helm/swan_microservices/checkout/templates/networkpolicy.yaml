@@ -59,12 +59,6 @@ spec:
       podSelector:
         matchLabels:
           opentelemetry.io/name: shipping
-    - namespaceSelector:
-        matchLabels:
-          kubernetes.io/metadata.name: otel-demo
-      podSelector:
-        matchLabels:
-          opentelemetry.io/name: quote
     ports:
     - protocol: TCP
       port: 8080

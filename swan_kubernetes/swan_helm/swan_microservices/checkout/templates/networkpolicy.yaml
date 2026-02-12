@@ -84,3 +84,10 @@ spec:
       port: 53
     - protocol: TCP
       port: 53
+  - to:
+    - namespaceSelector:
+        matchLabels:
+          kubernetes.io/metadata.name: otel-demo
+    ports:
+    - protocol: TCP
+      port: 443

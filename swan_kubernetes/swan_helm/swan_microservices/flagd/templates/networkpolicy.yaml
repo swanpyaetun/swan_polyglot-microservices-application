@@ -65,12 +65,6 @@ spec:
       podSelector:
         matchLabels:
           opentelemetry.io/name: llm
-    - namespaceSelector:
-        matchLabels:
-          kubernetes.io/metadata.name: otel-demo
-      podSelector:
-        matchLabels:
-          opentelemetry.io/name: email
     ports:
     - protocol: TCP
       port: 8013

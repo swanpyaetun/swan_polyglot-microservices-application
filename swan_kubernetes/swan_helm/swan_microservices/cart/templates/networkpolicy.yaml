@@ -61,3 +61,13 @@ spec:
       port: 53
     - protocol: TCP
       port: 53
+  - to:
+    - namespaceSelector:
+        matchLabels:
+          kubernetes.io/metadata.name: otel-demo
+      podSelector:
+        matchLabels:
+          opentelemetry.io/name: checkout
+    ports:
+    - protocol: TCP
+      port: 8080

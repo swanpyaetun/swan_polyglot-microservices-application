@@ -35,22 +35,6 @@ spec:
       port: 9092
   egress:
   - to:
-    - namespaceSelector:
-        matchLabels:
-          kubernetes.io/metadata.name: otel-demo
-      podSelector:
-        matchLabels:
-          opentelemetry.io/name: accounting
-    - namespaceSelector:
-        matchLabels:
-          kubernetes.io/metadata.name: otel-demo
-      podSelector:
-        matchLabels:
-          opentelemetry.io/name: fraud-detection
-    ports:
-    - protocol: TCP
-      port: 9092
-  - to:
     - podSelector:
         matchLabels:
           opentelemetry.io/name: kafka

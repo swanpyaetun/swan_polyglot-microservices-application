@@ -8,19 +8,7 @@ spec:
     matchLabels:
       opentelemetry.io/name: accounting
   policyTypes:
-  - Ingress
   - Egress
-  ingress:
-  - from:
-    - namespaceSelector:
-        matchLabels:
-          kubernetes.io/metadata.name: otel-demo
-      podSelector:
-        matchLabels:
-          opentelemetry.io/name: kafka
-    ports:
-    - protocol: TCP
-      port: 9092
   egress:
   - to:
     - namespaceSelector:

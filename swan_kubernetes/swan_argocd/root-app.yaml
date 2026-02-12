@@ -11,7 +11,7 @@ spec:
   source:
     repoURL: 'git@github.com:swanpyaetun/swan_polyglot-microservices-application.git'
     targetRevision: main
-    path: swan_kubernetes/swan_argocd
+    path: swan_kubernetes/swan_argocd_apps
   destination:
     server: https://kubernetes.default.svc
   syncPolicy:

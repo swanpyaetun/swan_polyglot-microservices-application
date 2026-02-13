@@ -13,7 +13,6 @@ metadata:
     app.kubernetes.io/name: frontend-proxy
     app.kubernetes.io/part-of: opentelemetry-demo
 spec:
-  replicas: 1
   revisionHistoryLimit: 10
   selector:
     matchLabels:
@@ -96,8 +95,14 @@ spec:
             - name: OTEL_COLLECTOR_PORT_HTTP
               value: "4318"
           resources:
+            {{- with .Values.resources }}
+            requests:
+              cpu: {{ .requests.cpu }}
+              memory: {{ .requests.memory }}
             limits:
-              memory: 65Mi
+              cpu: {{ .limits.cpu }}
+              memory: {{ .limits.memory }}
+            {{- end }}
           securityContext:
             runAsGroup: 101
             runAsNonRoot: true

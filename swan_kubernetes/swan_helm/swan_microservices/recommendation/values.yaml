@@ -5,3 +5,15 @@
 image:
   repository: 655355946217.dkr.ecr.ap-southeast-1.amazonaws.com/swan_polyglot-microservices-application/recommendation
   tag: "21947916810"
+
+resources:
+  requests:
+    cpu: 800m
+    memory: 350Mi
+  limits:
+    cpu: 2000m
+    memory: 500Mi
+
+swan_hpa:
+  swan_minReplicas: 1
+  swan_maxReplicas: 10

@@ -2,6 +2,14 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
-image:
-  repository: 655355946217.dkr.ecr.ap-southeast-1.amazonaws.com/swan_polyglot-microservices-application/valkey-cart
-  tag: "PLACEHOLDER"
+resources:
+  requests:
+    cpu: 150m
+    memory: 15Mi
+  limits:
+    cpu: 400m
+    memory: 20Mi
+
+swan_hpa:
+  swan_minReplicas: 1
+  swan_maxReplicas: 10

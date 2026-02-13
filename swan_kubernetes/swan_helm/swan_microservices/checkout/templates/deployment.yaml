@@ -13,7 +13,6 @@ metadata:
     app.kubernetes.io/name: checkout
     app.kubernetes.io/part-of: opentelemetry-demo
 spec:
-  replicas: 1
   revisionHistoryLimit: 10
   selector:
     matchLabels:
@@ -75,8 +74,14 @@ spec:
             - name: GOMEMLIMIT
               value: 16MiB
           resources:
+            {{- with .Values.resources }}
+            requests:
+              cpu: {{ .requests.cpu }}
+              memory: {{ .requests.memory }}
             limits:
-              memory: 20Mi
+              cpu: {{ .limits.cpu }}
+              memory: {{ .limits.memory }}
+            {{- end }}
           volumeMounts:
       initContainers:
         - command:

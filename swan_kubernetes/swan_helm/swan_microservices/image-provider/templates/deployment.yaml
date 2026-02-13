@@ -13,7 +13,6 @@ metadata:
     app.kubernetes.io/name: image-provider
     app.kubernetes.io/part-of: opentelemetry-demo
 spec:
-  replicas: 1
   revisionHistoryLimit: 10
   selector:
     matchLabels:
@@ -63,7 +62,13 @@ spec:
             - name: OTEL_COLLECTOR_HOST
               value: $(OTEL_COLLECTOR_NAME)
           resources:
+            {{- with .Values.resources }}
+            requests:
+              cpu: {{ .requests.cpu }}
+              memory: {{ .requests.memory }}
             limits:
-              memory: 50Mi
+              cpu: {{ .limits.cpu }}
+              memory: {{ .limits.memory }}
+            {{- end }}
           volumeMounts:
       volumes:

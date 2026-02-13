@@ -13,7 +13,6 @@ metadata:
     app.kubernetes.io/name: flagd
     app.kubernetes.io/part-of: opentelemetry-demo
 spec:
-  replicas: 1
   revisionHistoryLimit: 10
   selector:
     matchLabels:
@@ -68,8 +67,14 @@ spec:
             - name: GOMEMLIMIT
               value: 60MiB
           resources:
+            {{- with .Values.flagd.resources }}
+            requests:
+              cpu: {{ .requests.cpu }}
+              memory: {{ .requests.memory }}
             limits:
-              memory: 75Mi
+              cpu: {{ .limits.cpu }}
+              memory: {{ .limits.memory }}
+            {{- end }}
           volumeMounts:
             - name: config-rw
               mountPath: /etc/flagd
@@ -101,8 +106,14 @@ spec:
             - name: PHX_HOST
               value: localhost
           resources:
+            {{- with .Values.flagd-ui.resources }}
+            requests:
+              cpu: {{ .requests.cpu }}
+              memory: {{ .requests.memory }}
             limits:
-              memory: 250Mi
+              cpu: {{ .limits.cpu }}
+              memory: {{ .limits.memory }}
+            {{- end }}
           volumeMounts:
             - mountPath: /app/data
               name: config-rw

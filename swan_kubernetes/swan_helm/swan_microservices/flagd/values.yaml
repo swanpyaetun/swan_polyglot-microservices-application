@@ -9,19 +9,19 @@ image:
 flagd:
   resources:
     requests:
-      cpu: 100m
-      memory: 50Mi
+      cpu: 150m
+      memory: 75Mi
     limits:
-      cpu: 300m
+      cpu: 150m
       memory: 75Mi
 
 flagd-ui:
   resources:
     requests:
-      cpu: 150m
-      memory: 180Mi
+      cpu: 300m
+      memory: 250Mi
     limits:
-      cpu: 500m
+      cpu: 300m
       memory: 250Mi
 
 swan_hpa:

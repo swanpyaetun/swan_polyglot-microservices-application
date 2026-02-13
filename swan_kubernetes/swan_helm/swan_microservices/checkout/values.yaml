@@ -8,9 +8,9 @@ image:
 resources:
   requests:
     cpu: 100m
-    memory: 15Mi
+    memory: 20Mi
   limits:
-    cpu: 300m
+    cpu: 100m
     memory: 20Mi
 swan_hpa:
   swan_minReplicas: 1

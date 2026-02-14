@@ -21,7 +21,8 @@ jobs:
   swan_docker:
     uses: ./.github/workflows/swan_docker.yml
     with:
+      swan_aws_region: "ap-southeast-1"
       swan_ecr_repository: "swan_polyglot-microservices-application/load-generator"
       swan_dockerfile_path: "src/load-generator/Dockerfile"
     secrets:
-      SWAN_CI_ROLE_ARN: ${{ secrets.SWAN_CI_ROLE_ARN }}
+      SWAN_CI_IAM_ROLE_ARN: ${{ secrets.SWAN_CI_IAM_ROLE_ARN }}

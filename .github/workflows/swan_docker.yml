@@ -4,9 +4,8 @@ on:
   workflow_call:
     inputs:
       swan_aws_region:
-        required: false
+        required: true
         type: string
-        default: "ap-southeast-1"
       swan_ecr_repository:
         required: true
         type: string
@@ -14,7 +13,7 @@ on:
         required: true
         type: string
     secrets:
-      SWAN_CI_ROLE_ARN:
+      SWAN_CI_IAM_ROLE_ARN:
         required: true
 
 jobs:
@@ -42,7 +41,7 @@ jobs:
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v5
         with:
-          role-to-assume: ${{ secrets.SWAN_CI_ROLE_ARN }}
+          role-to-assume: ${{ secrets.SWAN_CI_IAM_ROLE_ARN }}
           aws-region: ${{ inputs.swan_aws_region }}
 
       - name: Login to Amazon ECR

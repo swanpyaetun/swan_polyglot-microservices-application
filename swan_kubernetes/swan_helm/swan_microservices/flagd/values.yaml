@@ -5,8 +5,7 @@
 namespace: otel-demo
 image:
   repository: 655355946217.dkr.ecr.ap-southeast-1.amazonaws.com/swan_polyglot-microservices-application/flagd
-  tag: "21947916774"
-
+  tag: "22037152337"
 flagd:
   resources:
     requests:
@@ -15,7 +14,6 @@ flagd:
     limits:
       cpu: 150m
       memory: 75Mi
-
 flagd_ui:
   resources:
     requests:
@@ -24,7 +22,6 @@ flagd_ui:
     limits:
       cpu: 300m
       memory: 250Mi
-
 swan_hpa:
   swan_minReplicas: 1
   swan_maxReplicas: 10

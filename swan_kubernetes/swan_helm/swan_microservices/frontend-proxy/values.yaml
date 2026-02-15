@@ -14,7 +14,7 @@ resources:
     cpu: 40m
     memory: 40Mi
 swan_hpa:
-  swan_minReplicas: 1
+  swan_minReplicas: 2
   swan_maxReplicas: 10
 swan_ingress:
   swan_host: www.swanpyaetun.com

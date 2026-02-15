@@ -4,7 +4,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: flagd-config
-  namespace: otel-demo
+  namespace: {{ .Values.namespace }}
   labels:
     
     

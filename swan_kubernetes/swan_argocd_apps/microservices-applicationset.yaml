@@ -29,7 +29,6 @@ spec:
             - values.yaml
       destination:
         server: https://kubernetes.default.svc
-        namespace: otel-demo
       syncPolicy:
         automated:
           prune: true

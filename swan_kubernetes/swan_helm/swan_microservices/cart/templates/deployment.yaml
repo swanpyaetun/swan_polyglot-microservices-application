@@ -4,6 +4,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: cart
+  namespace: {{ .Values.namespace }}
   labels:
     
     opentelemetry.io/name: cart

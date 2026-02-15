@@ -3,6 +3,7 @@ apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
   name: load-generator
+  namespace: {{ .Values.namespace }}
 spec:
   scaleTargetRef:
     apiVersion: apps/v1

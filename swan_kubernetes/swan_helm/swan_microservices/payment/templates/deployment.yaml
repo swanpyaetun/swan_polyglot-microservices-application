@@ -4,6 +4,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: payment
+  namespace: {{ .Values.namespace }}
   labels:
     
     opentelemetry.io/name: payment

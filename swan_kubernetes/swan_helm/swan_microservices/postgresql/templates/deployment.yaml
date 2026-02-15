@@ -4,6 +4,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: postgresql
+  namespace: {{ .Values.namespace }}
   labels:
     
     opentelemetry.io/name: postgresql

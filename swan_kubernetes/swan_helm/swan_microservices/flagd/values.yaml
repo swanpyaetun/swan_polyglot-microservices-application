@@ -16,7 +16,7 @@ flagd:
       cpu: 150m
       memory: 75Mi
 
-flagd-ui:
+flagd_ui:
   resources:
     requests:
       cpu: 300m

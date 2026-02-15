@@ -107,7 +107,7 @@ spec:
             - name: PHX_HOST
               value: localhost
           resources:
-            {{- with .Values.flagd-ui.resources }}
+            {{- with .Values.flagd_ui.resources }}
             requests:
               cpu: {{ .requests.cpu }}
               memory: {{ .requests.memory }}

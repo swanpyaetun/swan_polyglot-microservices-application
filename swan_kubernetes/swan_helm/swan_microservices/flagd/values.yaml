@@ -12,28 +12,18 @@ flagd:
       cpu: 30m
       memory: 80Mi
     limits:
-<<<<<<< HEAD
-      cpu: 150m
-      memory: 75Mi
-=======
       cpu: 30m
       memory: 80Mi
 
->>>>>>> c516eb07 (Update resources requests and limits for pods [skip ci])
 flagd_ui:
   resources:
     requests:
       cpu: 40m
       memory: 120Mi
     limits:
-<<<<<<< HEAD
-      cpu: 300m
-      memory: 250Mi
-=======
       cpu: 40m
       memory: 120Mi
 
->>>>>>> c516eb07 (Update resources requests and limits for pods [skip ci])
 swan_hpa:
   swan_minReplicas: 1
   swan_maxReplicas: 10

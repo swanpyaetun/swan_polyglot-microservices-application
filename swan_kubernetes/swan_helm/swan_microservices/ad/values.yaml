@@ -8,11 +8,11 @@ image:
   tag: "22037152317"
 resources:
   requests:
-    cpu: 500m
-    memory: 300Mi
+    cpu: 50m
+    memory: 260Mi
   limits:
-    cpu: 500m
-    memory: 300Mi
+    cpu: 50m
+    memory: 260Mi
 swan_hpa:
   swan_minReplicas: 1
   swan_maxReplicas: 10

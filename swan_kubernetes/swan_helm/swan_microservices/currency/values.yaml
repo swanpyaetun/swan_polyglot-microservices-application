@@ -5,7 +5,7 @@
 namespace: otel-demo
 image:
   repository: 655355946217.dkr.ecr.ap-southeast-1.amazonaws.com/swan_polyglot-microservices-application/currency
-  tag: "22051662962"
+  tag: "22060391074"
 resources:
   requests:
     cpu:

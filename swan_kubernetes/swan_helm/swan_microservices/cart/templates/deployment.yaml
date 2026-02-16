@@ -14,7 +14,6 @@ metadata:
     app.kubernetes.io/name: cart
     app.kubernetes.io/part-of: opentelemetry-demo
 spec:
-  replicas: 1
   revisionHistoryLimit: 10
   selector:
     matchLabels:

@@ -6,7 +6,7 @@ namespace: otel-demo
 
 resources:
   requests:
-    cpu: 25m
+    cpu: 10m
     memory: 64Mi
   limits:
     cpu:

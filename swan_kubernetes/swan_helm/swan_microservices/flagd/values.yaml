@@ -9,20 +9,20 @@ image:
 flagd:
   resources:
     requests:
-      cpu: 30m
-      memory: 80Mi
+      cpu:
+      memory:
     limits:
-      cpu: 30m
-      memory: 80Mi
+      cpu:
+      memory:
 
 flagd_ui:
   resources:
     requests:
-      cpu: 40m
-      memory: 120Mi
+      cpu:
+      memory:
     limits:
-      cpu: 40m
-      memory: 120Mi
+      cpu:
+      memory:
 
 swan_hpa:
   swan_minReplicas: 2

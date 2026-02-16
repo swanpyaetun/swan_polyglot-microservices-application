@@ -6,11 +6,11 @@ namespace: otel-demo
 
 resources:
   requests:
-    cpu: 40m
-    memory: 20Mi
+    cpu:
+    memory:
   limits:
-    cpu: 40m
-    memory: 20Mi
+    cpu:
+    memory:
 
 swan_hpa:
   swan_minReplicas: 2

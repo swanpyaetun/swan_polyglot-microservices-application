@@ -5,7 +5,7 @@
 namespace: otel-demo
 image:
   repository: 655355946217.dkr.ecr.ap-southeast-1.amazonaws.com/swan_polyglot-microservices-application/kafka
-  tag: "22051662956"
+  tag: "22060391123"
 resources:
   requests:
     cpu:

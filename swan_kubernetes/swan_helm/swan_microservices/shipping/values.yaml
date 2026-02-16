@@ -9,10 +9,10 @@ image:
 resources:
   requests:
     cpu: 10m
-    memory: 8Mi
+    memory: 32Mi
   limits:
     cpu:
-    memory: 16Mi
+    memory: 64Mi
 swan_hpa:
   swan_minReplicas: 2
   swan_maxReplicas: 10

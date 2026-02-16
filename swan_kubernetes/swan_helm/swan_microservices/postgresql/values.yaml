@@ -7,10 +7,10 @@ namespace: otel-demo
 resources:
   requests:
     cpu: 10m
-    memory: 64Mi
+    memory: 128Mi
   limits:
     cpu:
-    memory: 128Mi
+    memory: 256Mi
 
 swan_hpa:
   swan_minReplicas: 2

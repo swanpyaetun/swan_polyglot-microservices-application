@@ -15,4 +15,4 @@ resources:
     memory: 3Gi
 swan_hpa:
   swan_minReplicas: 2
-  swan_maxReplicas: 10
+  swan_maxReplicas: 5

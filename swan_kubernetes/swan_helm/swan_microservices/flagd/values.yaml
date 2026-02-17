@@ -9,15 +9,15 @@ image:
 flagd:
   resources:
     requests:
-      cpu: 10m
-      memory: 32Mi
+      cpu: 100m
+      memory: 256Mi
     limits:
       cpu:
-      memory: 64Mi
+      memory: 512Mi
 flagd_ui:
   resources:
     requests:
-      cpu: 10m
+      cpu: 100m
       memory: 256Mi
     limits:
       cpu: 

@@ -8,7 +8,7 @@ image:
   tag: "22060391053"
 resources:
   requests:
-    cpu: 50m
+    cpu: 100m
     memory: 256Mi
   limits:
     cpu:

@@ -13,6 +13,3 @@ resources:
   limits:
     cpu:
     memory: 1Gi
-swan_hpa:
-  swan_minReplicas: 2
-  swan_maxReplicas: 5

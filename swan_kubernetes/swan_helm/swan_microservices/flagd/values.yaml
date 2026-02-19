@@ -22,6 +22,3 @@ flagd_ui:
     limits:
       cpu:
       memory: 512Mi
-swan_hpa:
-  swan_minReplicas: 2
-  swan_maxReplicas: 5

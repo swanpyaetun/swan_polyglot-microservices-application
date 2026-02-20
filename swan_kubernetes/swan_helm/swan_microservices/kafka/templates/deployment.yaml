@@ -65,15 +65,6 @@ spec:
               value: CONTROLLER
             - name: KAFKA_CONTROLLER_QUORUM_VOTERS
               value: 1@kafka:9093
-          resources:
-            {{- with .Values.resources }}
-            requests:
-              cpu: {{ .requests.cpu }}
-              memory: {{ .requests.memory }}
-            limits:
-              cpu: {{ .limits.cpu }}
-              memory: {{ .limits.memory }}
-            {{- end }}
           securityContext:
             runAsGroup: 1000
             runAsNonRoot: true

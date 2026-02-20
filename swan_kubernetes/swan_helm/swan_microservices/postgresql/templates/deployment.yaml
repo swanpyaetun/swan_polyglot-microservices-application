@@ -72,15 +72,6 @@ spec:
               value: otel
             - name: POSTGRES_DB
               value: otel
-          resources:
-            {{- with .Values.resources }}
-            requests:
-              cpu: {{ .requests.cpu }}
-              memory: {{ .requests.memory }}
-            limits:
-              cpu: {{ .limits.cpu }}
-              memory: {{ .limits.memory }}
-            {{- end }}
           volumeMounts:
             - name: postgresql-init
               mountPath: /docker-entrypoint-initdb.d

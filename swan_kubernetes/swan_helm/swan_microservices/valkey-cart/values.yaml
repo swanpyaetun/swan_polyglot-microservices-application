@@ -4,14 +4,6 @@
 
 namespace: otel-demo
 
-resources:
-  requests:
-    cpu: 100m
-    memory: 256Mi
-  limits:
-    cpu:
-    memory: 512Mi
-
 swan_hpa:
   swan_minReplicas: 2
   swan_maxReplicas: 5

@@ -68,15 +68,6 @@ spec:
               value: $(OTEL_COLLECTOR_NAME):4317
             - name: GOMEMLIMIT
               value: 60MiB
-          resources:
-            {{- with .Values.flagd.resources }}
-            requests:
-              cpu: {{ .requests.cpu }}
-              memory: {{ .requests.memory }}
-            limits:
-              cpu: {{ .limits.cpu }}
-              memory: {{ .limits.memory }}
-            {{- end }}
           volumeMounts:
             - name: config-rw
               mountPath: /etc/flagd
@@ -107,15 +98,6 @@ spec:
               value: yYrECL4qbNwleYInGJYvVnSkwJuSQJ4ijPTx5tirGUXrbznFIBFVJdPl5t6O9ASw
             - name: PHX_HOST
               value: localhost
-          resources:
-            {{- with .Values.flagd_ui.resources }}
-            requests:
-              cpu: {{ .requests.cpu }}
-              memory: {{ .requests.memory }}
-            limits:
-              cpu: {{ .limits.cpu }}
-              memory: {{ .limits.memory }}
-            {{- end }}
           volumeMounts:
             - mountPath: /app/data
               name: config-rw

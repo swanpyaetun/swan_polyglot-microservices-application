@@ -3,7 +3,3 @@
 # Declare variables to be passed into your templates.
 
 namespace: otel-demo
-
-swan_hpa:
-  swan_minReplicas: 2
-  swan_maxReplicas: 5

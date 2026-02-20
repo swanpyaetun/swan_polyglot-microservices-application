@@ -10,16 +10,3 @@ spec:
     name: product-reviews
   updatePolicy:
     updateMode: "InPlaceOrRecreate"
-  resourcePolicy:
-    containerPolicies:
-    - containerName: "*"
-      minAllowed:
-        cpu: 100m
-        memory: 128Mi
-      maxAllowed:
-        cpu: 2
-        memory: 2Gi
-      controlledResources:
-      - cpu
-      - memory
-      controlledValues: RequestsAndLimits

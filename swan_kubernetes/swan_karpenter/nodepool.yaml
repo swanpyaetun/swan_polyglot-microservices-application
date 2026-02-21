@@ -10,6 +10,9 @@ spec:
   subnetSelectorTerms:
     - tags:
         karpenter.sh/discovery: "swan_production_eks_cluster"
+  securityGroupSelectorTerms:
+    - tags:
+        kubernetes.io/cluster/swan_production_eks_cluster: "owned"
 ---
 apiVersion: karpenter.sh/v1
 kind: NodePool

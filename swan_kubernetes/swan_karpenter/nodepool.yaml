@@ -6,7 +6,7 @@ metadata:
 spec:
   role: "swan_production_eks_cluster-swan_eks_nodes_iam_role"
   amiSelectorTerms:
-    - alias: "al2023@$v20260209"
+    - alias: "al2023@v20260209"
   subnetSelectorTerms:
     - tags:
         karpenter.sh/discovery: "swan_production_eks_cluster"

@@ -1,19 +1,4 @@
 ---
-apiVersion: karpenter.k8s.aws/v1
-kind: EC2NodeClass
-metadata:
-  name: default
-spec:
-  role: "swan_production_eks_cluster-swan_eks_node_iam_role"
-  amiSelectorTerms:
-    - alias: "al2023@v20260209"
-  subnetSelectorTerms:
-    - tags:
-        karpenter.sh/discovery: "swan_production_eks_cluster"
-  securityGroupSelectorTerms:
-    - tags:
-        kubernetes.io/cluster/swan_production_eks_cluster: "owned"
----
 apiVersion: karpenter.sh/v1
 kind: NodePool
 metadata:

@@ -13,7 +13,7 @@ flagd:
       memory:
     limits:
       cpu:
-      memory:
+      memory: 75Mi
 flagd_ui:
   resources:
     requests:
@@ -21,4 +21,4 @@ flagd_ui:
       memory:
     limits:
       cpu:
-      memory:
+      memory: 250Mi

@@ -15,4 +15,4 @@ resources:
     memory:
   limits:
     cpu:
-    memory:
+    memory: 65Mi

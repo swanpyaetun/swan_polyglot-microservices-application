@@ -10,4 +10,4 @@ resources:
     memory:
   limits:
     cpu:
-    memory:
+    memory: 20Mi

@@ -61,6 +61,15 @@ spec:
               value: http://$(OTEL_COLLECTOR_NAME):4318
             - name: IPV6_ENABLED
               value: "false"
+          resources:
+            {{- with .Values.resources }}
+            requests:
+              cpu: {{ .requests.cpu }}
+              memory: {{ .requests.memory }}
+            limits:
+              cpu: {{ .limits.cpu }}
+              memory: {{ .limits.memory }}
+            {{- end }}
           securityContext:
             runAsGroup: 33
             runAsNonRoot: true

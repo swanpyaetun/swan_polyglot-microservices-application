@@ -59,6 +59,15 @@ spec:
               value: "true"
             - name: OTEL_INSTRUMENTATION_MESSAGING_EXPERIMENTAL_RECEIVE_TELEMETRY_ENABLED
               value: "true"
+          resources:
+            {{- with .Values.resources }}
+            requests:
+              cpu: {{ .requests.cpu }}
+              memory: {{ .requests.memory }}
+            limits:
+              cpu: {{ .limits.cpu }}
+              memory: {{ .limits.memory }}
+            {{- end }}
           volumeMounts:
       initContainers:
         - command:

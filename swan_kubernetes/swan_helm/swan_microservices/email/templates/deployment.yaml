@@ -61,5 +61,14 @@ spec:
               value: flagd
             - name: FLAGD_PORT
               value: "8013"
+          resources:
+            {{- with .Values.resources }}
+            requests:
+              cpu: {{ .requests.cpu }}
+              memory: {{ .requests.memory }}
+            limits:
+              cpu: {{ .limits.cpu }}
+              memory: {{ .limits.memory }}
+            {{- end }}
           volumeMounts:
       volumes:

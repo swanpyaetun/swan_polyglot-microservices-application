@@ -96,6 +96,15 @@ spec:
               value: "4317"
             - name: OTEL_COLLECTOR_PORT_HTTP
               value: "4318"
+          resources:
+            {{- with .Values.resources }}
+            requests:
+              cpu: {{ .requests.cpu }}
+              memory: {{ .requests.memory }}
+            limits:
+              cpu: {{ .limits.cpu }}
+              memory: {{ .limits.memory }}
+            {{- end }}
           securityContext:
             runAsGroup: 101
             runAsNonRoot: true

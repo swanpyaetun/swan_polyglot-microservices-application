@@ -87,6 +87,15 @@ spec:
               value: frontend-web
             - name: PUBLIC_OTEL_EXPORTER_OTLP_TRACES_ENDPOINT
               value: http://localhost:8080/otlp-http/v1/traces
+          resources:
+            {{- with .Values.resources }}
+            requests:
+              cpu: {{ .requests.cpu }}
+              memory: {{ .requests.memory }}
+            limits:
+              cpu: {{ .limits.cpu }}
+              memory: {{ .limits.memory }}
+            {{- end }}
           securityContext:
             runAsGroup: 1001
             runAsNonRoot: true

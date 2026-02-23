@@ -75,6 +75,15 @@ spec:
               value: http://$(OTEL_COLLECTOR_NAME):4317
             - name: GOMEMLIMIT
               value: 16MiB
+          resources:
+            {{- with .Values.resources }}
+            requests:
+              cpu: {{ .requests.cpu }}
+              memory: {{ .requests.memory }}
+            limits:
+              cpu: {{ .limits.cpu }}
+              memory: {{ .limits.memory }}
+            {{- end }}
           volumeMounts:
       initContainers:
         - command:

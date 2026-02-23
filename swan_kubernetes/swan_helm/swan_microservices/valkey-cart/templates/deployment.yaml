@@ -48,6 +48,15 @@ spec:
               name: valkey-cart
           env:
             []
+          resources:
+            {{- with .Values.resources }}
+            requests:
+              cpu: {{ .requests.cpu }}
+              memory: {{ .requests.memory }}
+            limits:
+              cpu: {{ .limits.cpu }}
+              memory: {{ .limits.memory }}
+            {{- end }}
           securityContext:
             runAsGroup: 1000
             runAsNonRoot: true

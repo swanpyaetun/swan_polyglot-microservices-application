@@ -3,3 +3,11 @@
 # Declare variables to be passed into your templates.
 
 namespace: otel-demo
+
+resources:
+  requests:
+    cpu:
+    memory:
+  limits:
+    cpu:
+    memory:

@@ -6,9 +6,6 @@ namespace: otel-demo
 image:
   repository: 655355946217.dkr.ecr.ap-southeast-1.amazonaws.com/swan_polyglot-microservices-application/frontend-proxy
   tag: "22304153453"
-swan_ingress:
-  swan_host: www.swanpyaetun.com
-  swan_acm_certificate_arn: arn:aws:acm:ap-southeast-1:655355946217:certificate/38436574-e746-4df9-a92c-8af211b6c7b8
 resources:
   requests:
     cpu:
@@ -16,3 +13,6 @@ resources:
   limits:
     cpu:
     memory: 65Mi
+swan_ingress:
+  swan_host: www.swanpyaetun.com
+  swan_acm_certificate_arn: arn:aws:acm:ap-southeast-1:655355946217:certificate/38436574-e746-4df9-a92c-8af211b6c7b8

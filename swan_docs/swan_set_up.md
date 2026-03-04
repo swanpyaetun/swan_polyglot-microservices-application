@@ -63,9 +63,9 @@ In AWS Management Console, request an ACM certificate in ap-southeast-1 region w
 Certificate type:<br> 
 &nbsp;&nbsp;&nbsp;&nbsp;Request a public certificate<br>
 Domian names:<br>
-&nbsp;&nbsp;&nbsp;&nbsp;Fully qualified domain name:
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- swanpyaetun.com
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- *.swanpyaetun.com
+&nbsp;&nbsp;&nbsp;&nbsp;Fully qualified domain name:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- swanpyaetun.com<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- *.swanpyaetun.com<br>
 Allow export:<br> 
 &nbsp;&nbsp;&nbsp;&nbsp;Disable export<br>
 Validation method:<br> 
@@ -172,7 +172,7 @@ image:
   tag:
 swan_ingress:
   swan_host: www.swanpyaetun.com
-  swan_acm_certificate_arn: arn:aws:acm:ap-southeast-1:655355946217:certificate/38436574-e746-4df9-a92c-8af211b6c7b8
+  swan_acm_certificate_arn: arn:aws:acm:ap-southeast-1:655355946217:certificate/2d6443ef-1f10-4f46-8fb5-fb318b7de611
 ```
 
 For postgresql and valkey-cart microservice, set only the following value:
@@ -194,7 +194,7 @@ cd
 
 In swan_kubernetes/swan_argocd_root_app/root-app.yaml, set the following fields: spec.project, spec.source, spec.destination, and spec.syncPolicy.
 
-### 4.3. swan_kubernetes/swan_argocd_apps/
+### 4.4. swan_kubernetes/swan_argocd_apps/
 
 In swan_kubernetes/swan_argocd_apps/platform-app.yaml, set the following fields: spec.project, spec.source, spec.destination, and spec.syncPolicy.
 

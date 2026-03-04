@@ -9,7 +9,7 @@ spec:
   commonUpdateSettings:
     updateStrategy: newest-build
   writeBackConfig:
-    method: git
+    method: "git:secret:argocd/git-creds"
     gitConfig:
       repository: https://github.com/swanpyaetun/swan_polyglot-microservices-application.git
       branch: main

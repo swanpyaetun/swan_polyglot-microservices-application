@@ -9,7 +9,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: 'git@github.com:swanpyaetun/swan_polyglot-microservices-application.git'
+    repoURL: https://github.com/swanpyaetun/swan_polyglot-microservices-application.git
     targetRevision: main
     path: swan_kubernetes/swan_helm/swan_platform
     helm:

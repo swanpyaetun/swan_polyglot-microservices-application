@@ -11,7 +11,7 @@ spec:
   writeBackConfig:
     method: git
     gitConfig:
-      repository: git@github.com:swanpyaetun/swan_polyglot-microservices-application.git
+      repository: https://github.com/swanpyaetun/swan_polyglot-microservices-application.git
       branch: main
       writeBackTarget: helmvalues:./values.yaml
   applicationRefs:

@@ -122,7 +122,7 @@ CI/CD pipelines for microservices can be triggered in 3 ways:
 
 Private subnets, EKS node IAM role, and default cluster security group are already created in [https://github.com/swanpyaetun/swan_eks-infrastructure](https://github.com/swanpyaetun/swan_eks-infrastructure).
 
-Run this command before running the next command.
+Run this command before running the next command. Enter AWS Access Key ID and AWS Secret Access Key of the IAM User, and ap-southeast-1 as Default region name.
 ```bash
 aws configure
 ```

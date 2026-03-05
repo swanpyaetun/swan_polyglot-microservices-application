@@ -182,16 +182,6 @@ namespace: otel-demo
 
 ### 4.3. swan_kubernetes/swan_argocd_root_app/
 
-ssh-keygen -t ed25519 -C “swanpyaetun/swan_polyglot-microservices-application” -f ~/.ssh/swan_polyglot-microservices-application_argocd_ed25519
-
-kubeseal --controller-name sealed-secrets --controller-namespace kube-system <~/Desktop/swan_git_repository_secret.yaml >~/Desktop/swan_polyglot-microservices-application/swan_kubernetes/swan_argocd_root_app/swan_git_repository_sealed_secret.yaml
-
-cd ~/Desktop/swan_polyglot-microservices-application/swan_kubernetes/swan_argocd_root_app/
-git add swan_git_repository_sealed_secret.yaml
-git commit -m "Update swan_git_repository_sealed_secret.yaml [skip ci]"
-git push origin main
-cd
-
 In swan_kubernetes/swan_argocd_root_app/root-app.yaml, set the following fields: spec.project, spec.source, spec.destination, and spec.syncPolicy.
 
 ### 4.4. swan_kubernetes/swan_argocd_apps/

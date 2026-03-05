@@ -78,9 +78,31 @@ Tags:<br>
 
 To validate the domain for above ACM certificate, in AWS Management Console, go to ap-southeast-1 region -> Certificate Manager -> List certificates. Choose the certificate that you want to validate the domain for. Under Domains, click "Create records in Route 53". Click "Create records". Then, the status of the ACM certificate will change to "Issued".
 
-## 2. GitHub Actions
+## 2. GitHub
 
-### 2.1. Create repository secret
+### 2.1. Create GitHub App for Argo CD Image Updater
+
+Go to GitHub -> Settings -> Developer settings -> GitHub Apps. Create a GitHub App with the following settings:<br>
+GitHub App name: swan-argocd-image-updater<br>
+Homepage URL: https://github.com/swanpyaetun/swan_polyglot-microservices-application<br>
+Disable Webhook<br>
+Permissions:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Repository permissions:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Contents: Read and write<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Metadata: Read-only<br>
+Where can this GitHub App be installed?: Only on this account<br>
+
+Go to "Settings" -> Developer settings -> GitHub Apps. Select "swan-argocd-image-updater" GitHub App. Go to "Install App". Click "Install". Choose "Only select repositories", click "Select repositories", and select "swanpyaetun/swan_polyglot-microservices-application". Click "Install".
+
+Go to "Settings" -> Developer settings -> GitHub Apps. Select "swan-argocd-image-updater" GitHub App. Go to "General". You will see "githubAppID".
+
+Go to "Settings" -> Integrations -> Applications -> Installed GitHub Apps. Select "swan-argocd-image-updater" GitHub App by clicking "Configure". Look at the URL. The number behind https://github.com/settings/installations/ is "githubAppInstallationID".
+
+Go to "Settings" -> Developer settings -> GitHub Apps. Select "swan-argocd-image-updater" GitHub App. Go to "General" -> Private keys. Click "Generate a private key". The private key will be downloaded to your work station.
+
+## 3. GitHub Actions
+
+### 3.1. Create repository secret
 
 In swanpyaetun/swan_polyglot-microservices-application repository, go to "Settings" -> Secrets and variables -> Actions.
 
@@ -88,7 +110,7 @@ Create a new repository secret:<br>
 Name: SWAN_CI_IAM_ROLE_ARN<br>
 Secret: swan_githubactions_ecr IAM Role arn from [1.1. Create IAM Role for GitHub Actions to authenticate to AWS](#11-create-iam-role-for-github-actions-to-authenticate-to-aws)
 
-### 2.2. Set inputs
+### 3.2. Set inputs
 
 Private ECR repositories are already created in [https://github.com/swanpyaetun/swan_eks-infrastructure](https://github.com/swanpyaetun/swan_eks-infrastructure).
 
@@ -109,16 +131,16 @@ jobs:
 
 Do the same for other microservices, except postgresql and valkey-cart. There is no CI/CD pipeline and private ECR repository for postgresql and valkey-cart microservices.
 
-### 2.3. How to run CI/CD pipelines for microservices
+### 3.3. How to run CI/CD pipelines for microservices
 
 CI/CD pipelines for microservices can be triggered in 3 ways:
 1. The CI/CD pipelines run when a pull request is opened against the main branch.
 2. The CI/CD pipelines run when a direct push is made to the main branch.
 3. In swanpyaetun/swan_polyglot-microservices-application repository, go to "Actions". Choose a microservice that you want to run CI/CD pipeline for. Click "Run workflow", and click "Run workflow" to run the CI/CD pipeline for the selected microservice.
 
-## 3. Karpenter
+## 4. Karpenter
 
-### 3.1. swan_kubernetes/swan_karpenter/ec2nodeclass.yaml
+### 4.1. swan_kubernetes/swan_karpenter/ec2nodeclass.yaml
 
 Private subnets, EKS node IAM role, and default cluster security group are already created in [https://github.com/swanpyaetun/swan_eks-infrastructure](https://github.com/swanpyaetun/swan_eks-infrastructure).
 
@@ -135,20 +157,20 @@ aws ssm get-parameter --name "/aws/service/eks/optimized-ami/${K8S_VERSION}/amaz
 
 In swan_kubernetes/swan_karpenter/ec2nodeclass.yaml, set the following fields: spec.role, spec.amiSelectorTerms, spec.subnetSelectorTerms, and spec.securityGroupSelectorTerms.
 
-### 3.2. swan_kubernetes/swan_karpenter/nodepool.yaml
+### 4.2. swan_kubernetes/swan_karpenter/nodepool.yaml
 
 In swan_kubernetes/swan_karpenter/nodepool.yaml, set the following fields: spec.template, spec.limits, and spec.disruption.
 
-## 4. Helm
+## 5. Helm
 
-### 4.1. swan_kubernetes/swan_helm/swan_platform/
+### 5.1. swan_kubernetes/swan_helm/swan_platform/
 
 In swan_kubernetes/swan_helm/swan_platform/, set the following value:
 ```yaml
 namespace: otel-demo
 ```
 
-### 4.2. swan_kubernetes/swan_helm/swan_microservices/
+### 5.2. swan_kubernetes/swan_helm/swan_microservices/
 
 Private ECR repositories are already created in [https://github.com/swanpyaetun/swan_eks-infrastructure](https://github.com/swanpyaetun/swan_eks-infrastructure).
 
@@ -180,11 +202,13 @@ For postgresql and valkey-cart microservice, set only the following value:
 namespace: otel-demo
 ```
 
-### 4.3. swan_kubernetes/swan_argocd_root_app/
+## 6. Argo CD
+
+### 6.1. swan_kubernetes/swan_argocd_root_app/
 
 In swan_kubernetes/swan_argocd_root_app/root-app.yaml, set the following fields: spec.project, spec.source, spec.destination, and spec.syncPolicy.
 
-### 4.4. swan_kubernetes/swan_argocd_apps/
+### 6.2. swan_kubernetes/swan_argocd_apps/
 
 In swan_kubernetes/swan_argocd_apps/platform-app.yaml, set the following fields: spec.project, spec.source, spec.destination, and spec.syncPolicy.
 

@@ -1,4 +1,4 @@
-name: Reusable workflow for building and pushing Docker images to ECR
+name: Reusable workflow for building and pushing Docker image to ECR
 
 on:
   workflow_call:

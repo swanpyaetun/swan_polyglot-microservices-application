@@ -36,12 +36,10 @@ spec:
   - to:
     - namespaceSelector:
         matchLabels:
-          kubernetes.io/metadata.name: kube-system
+          kubernetes.io/metadata.name: otel-demo
       podSelector:
         matchLabels:
-          k8s-app: kube-dns
+          opentelemetry.io/name: flagd
     ports:
-    - protocol: UDP
-      port: 53
     - protocol: TCP
-      port: 53
+      port: 8013

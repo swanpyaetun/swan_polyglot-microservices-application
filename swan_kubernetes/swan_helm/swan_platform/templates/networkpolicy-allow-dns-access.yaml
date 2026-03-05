@@ -1,23 +1,21 @@
----
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
-  name: quote
+  name: allow-dns-access
   namespace: {{ .Values.namespace }}
 spec:
   podSelector:
-    matchLabels:
-      opentelemetry.io/name: quote
+    matchLabels: {}
   policyTypes:
-  - Ingress
-  ingress:
-  - from:
+  - Egress
+  egress:
+  - to:
     - namespaceSelector:
         matchLabels:
-          kubernetes.io/metadata.name: otel-demo
+          kubernetes.io/metadata.name: kube-system
       podSelector:
         matchLabels:
-          opentelemetry.io/name: shipping
+          k8s-app: kube-dns
     ports:
-    - protocol: TCP
-      port: 8080
+    - protocol: UDP
+      port: 53

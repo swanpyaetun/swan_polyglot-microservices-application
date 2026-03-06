@@ -23,7 +23,7 @@ CI/CD pipelines for microservices can be triggered in 3 ways:
 3. In swanpyaetun/swan_polyglot-microservices-application repository, go to "Actions". Choose a microservice that you want to run CI/CD pipeline for. Click "Run workflow", and click "Run workflow" to run the CI/CD pipeline for the selected microservice.
 
 To view ECR basic scanning results, in AWS Management Console, go to ap-southeast-1 region -> Elastic Container Registry -> Private registry -> Repositories. Choose a repository that has container image that you want to view ECR basic scanning result for. Choose an image that you want to view ECR basic scanning result for. Under "Scanning and vulnerabilities", you will see ECR basic scanning result for that image.
-<br>
+<br><br>
 
 ```bash
 aws eks update-kubeconfig --region ap-southeast-1 --name swan_production_eks_cluster --role-arn arn:aws:iam::655355946217:role/swan_production_eks_cluster-swan_eks_cluster_admin_iam_role

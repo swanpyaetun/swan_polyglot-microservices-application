@@ -120,6 +120,7 @@ High availibility in deployments is achieved by implementing the following pract
 <br>
 
 In "frontend-proxy" Helm chart, there is an ingress called "frontend-proxy". AWS Load Balancer Controller in EKS will create internet-facing ALB. "frontend-proxy" ingress uses ip mode to route traffic directly to pod ip addresses. ACM certificate is attached to ALB to enable https. The ingress is configured to redirect http to https. External DNS in EKS will create DNS records in "swanpyaetun.com" Route 53 public hosted zone.
+<br>
 
 ![](architecture.png)
 Network policies are created according to traffic flows in the diagram.

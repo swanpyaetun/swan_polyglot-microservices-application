@@ -117,10 +117,11 @@ swan_kubernetes/swan_helm/swan_microservices/ contains 22 Helm charts. Most Helm
 
 High availibility in deployments is achieved by implementing the following practices:
 1. Having 2 replicas in deployment
+<br>
 
 In "frontend-proxy" Helm chart, there is an ingress called "frontend-proxy". AWS Load Balancer Controller in EKS will create internet-facing ALB. "frontend-proxy" ingress uses ip mode to route traffic directly to pod ip addresses. ACM certificate is attached to ALB to enable https. The ingress is configured to redirect http to https. External DNS in EKS will create DNS records in "swanpyaetun.com" Route 53 public hosted zone.
 
-![](swan_docs/architecture.png)
+![swan_docs/architecture.png](swan_docs/architecture.png)
 Network policies are created according to traffic flows in the diagram.
 
 When creating network policies, these traffic flows are excluded since they are not needed for application to function:
@@ -139,6 +140,7 @@ When creating network policies, these traffic flows are included since they are 
 8. email to flagd
 9. product-catalog to postgresql
 10. product-catalog to flagd
+<br>
 
 Application is secured by implementing the following practices:
 1. https is enabled by using ACM certificate in "frontend-proxy" ingress
@@ -148,6 +150,7 @@ Application is secured by implementing the following practices:
 ## 6. Argo CD
 
 Argo CD App-of-Apps pattern is used.
+<br>
 
 ```yaml
 metadata:
@@ -155,6 +158,7 @@ metadata:
   - resources-finalizer.argocd.argoproj.io/foreground
 ```
 This ensures Argo CD will delete child resources first before deleting the application itself.
+<br>
 
 ```yaml
 spec:
@@ -178,6 +182,7 @@ The "root" application deploys child resources.
 ### 6.2. swan_kubernetes/swan_argocd/swan_argocd_apps/
 
 The "platform" application deploys "platform" Helm chart.
+<br>
 
 The "microservices" applicationset generates multiple Argo CD applications for each microservice Helm chart.
 ```yaml
@@ -188,5 +193,6 @@ spec:
         argocd.argoproj.io/depends-on: platform
 ```
 This ensures "microservices" applications are deployed only after "platform" application is fully deployed.
+<br>
 
 Argo CD Image Updater monitors ECR for new container image tags for "microservices" applications, except "postgresql" and "valkey-cart", since there is no private ECR repository for "postgresql" and "valkey-cart". Argo CD Image Updater automatically updates the container image tags defined in the Helm values files in the git repository for each "microservices" application. Argo CD Image Updater uses "git-creds" secret in "argocd" namespace, to be able to push to the git repository.

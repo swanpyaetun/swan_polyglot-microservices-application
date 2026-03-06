@@ -118,8 +118,7 @@ Go to "Settings" -> Developer settings -> GitHub Apps. Select "swan-argocd-image
 
 ### 3.1. Create repository secret
 
-In swanpyaetun/swan_polyglot-microservices-application repository, go to "Settings" -> Secrets and variables -> Actions.
-
+In swanpyaetun/swan_polyglot-microservices-application repository, go to "Settings" -> Secrets and variables -> Actions.<br>
 Create a new repository secret:<br>
 Name: SWAN_CI_IAM_ROLE_ARN<br>
 Secret: swan_githubactions_ecr IAM role arn from [1.1. Create IAM Role for GitHub Actions to authenticate to AWS](#11-create-iam-role-for-github-actions-to-authenticate-to-aws)
@@ -155,12 +154,14 @@ Run this command before running the next command. Enter AWS Access Key ID and AW
 ```bash
 aws configure
 ```
+<br>
 
 The following command can be used to determine the alias version in a specific region.
 ```bash
 export K8S_VERSION="1.35"
 aws ssm get-parameter --name "/aws/service/eks/optimized-ami/${K8S_VERSION}/amazon-linux-2023/x86_64/standard/recommended/image_id" --query Parameter.Value | xargs aws ec2 describe-images --query 'Images[0].Name' --image-ids | sed -r 's/^.*(v[[:digit:]]+).*$/\1/'
 ```
+<br>
 
 In swan_kubernetes/swan_karpenter/ec2nodeclass.yaml, set the following fields: spec.role, spec.amiSelectorTerms, spec.subnetSelectorTerms, and spec.securityGroupSelectorTerms.
 
@@ -190,6 +191,7 @@ image:
 ```
 
 Do the same for other microservices, except frontend-proxy, postgresql, and valkey-cart.
+<br>
 
 Get ACM certificate arn from ACM certificate created in [1.2. Create ACM certificate for Kubernetes ingress](#12-create-acm-certificate-for-kubernetes-ingress).
 
@@ -203,6 +205,7 @@ swan_ingress:
   swan_host: www.swanpyaetun.com
   swan_acm_certificate_arn: arn:aws:acm:ap-southeast-1:655355946217:certificate/2d6443ef-1f10-4f46-8fb5-fb318b7de611
 ```
+<br>
 
 For postgresql and valkey-cart microservice, set only the following value:
 ```yaml
@@ -218,8 +221,10 @@ In swan_kubernetes/swan_argocd/root-app.yaml, set the following fields: spec.pro
 ### 6.2. swan_kubernetes/swan_argocd/swan_argocd_apps/
 
 In swan_kubernetes/swan_argocd/swan_argocd_apps/platform-app.yaml, set the following fields: spec.project, spec.source, spec.destination, and spec.syncPolicy.
+<br>
 
 In swan_kubernetes/swan_argocd/swan_argocd_apps/microservices-applicationset.yaml, set the following fields: spec.generators and spec.template.
+<br>
 
 Private ECR repositories are already created in [https://github.com/swanpyaetun/swan_eks-infrastructure](https://github.com/swanpyaetun/swan_eks-infrastructure).
 

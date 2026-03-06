@@ -31,6 +31,12 @@ aws eks update-kubeconfig --region ap-southeast-1 --name swan_production_eks_clu
 This command updates ~/.kube/config so "swan_production_eks_cluster" EKS cluster can be accessed using kubectl, assuming "swan_production_eks_cluster-swan_eks_cluster_admin_iam_role" IAM role.
 
 ```bash
+cd ~/Desktop/
+git clone git@github.com:swanpyaetun/swan_polyglot-microservices-application.git
+```
+Go to ~/Desktop/ and clone the [https://github.com/swanpyaetun/swan_polyglot-microservices-application](https://github.com/swanpyaetun/swan_polyglot-microservices-application) repository.
+
+```bash
 kubectl apply -f ~/Desktop/swan_polyglot-microservices-application/swan_kubernetes/swan_karpenter/
 ```
 This command creates "default" ec2nodeclass and "default" nodepool.

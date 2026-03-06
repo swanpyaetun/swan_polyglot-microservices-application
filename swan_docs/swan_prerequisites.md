@@ -191,7 +191,7 @@ image:
 ```
 
 Do the same for other microservices, except frontend-proxy, postgresql, and valkey-cart.
-<br>
+<br><br>
 
 Get ACM certificate arn from ACM certificate created in [1.2. Create ACM certificate for Kubernetes ingress](#12-create-acm-certificate-for-kubernetes-ingress).
 
@@ -221,10 +221,10 @@ In swan_kubernetes/swan_argocd/root-app.yaml, set the following fields: spec.pro
 ### 6.2. swan_kubernetes/swan_argocd/swan_argocd_apps/
 
 In swan_kubernetes/swan_argocd/swan_argocd_apps/platform-app.yaml, set the following fields: spec.project, spec.source, spec.destination, and spec.syncPolicy.
-<br>
+<br><br>
 
 In swan_kubernetes/swan_argocd/swan_argocd_apps/microservices-applicationset.yaml, set the following fields: spec.generators and spec.template.
-<br>
+<br><br>
 
 Private ECR repositories are already created in [https://github.com/swanpyaetun/swan_eks-infrastructure](https://github.com/swanpyaetun/swan_eks-infrastructure).
 

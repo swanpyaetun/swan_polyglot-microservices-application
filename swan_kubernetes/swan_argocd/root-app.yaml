@@ -2,7 +2,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: root-app
+  name: root
   namespace: argocd
   finalizers:
   - resources-finalizer.argocd.argoproj.io/foreground
@@ -11,7 +11,7 @@ spec:
   source:
     repoURL: https://github.com/swanpyaetun/swan_polyglot-microservices-application.git
     targetRevision: main
-    path: swan_kubernetes/swan_argocd_apps
+    path: swan_kubernetes/swan_argocd/swan_argocd_apps
   destination:
     server: https://kubernetes.default.svc
   syncPolicy:

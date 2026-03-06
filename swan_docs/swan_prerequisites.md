@@ -1,4 +1,24 @@
-# Instructions to set up the project
+# Prerequisites
+
+## Table of Contents
+
+- [1. AWS](#1-aws)
+  - [1.1. Create IAM Role for GitHub Actions to authenticate to AWS](#11-create-iam-role-for-github-actions-to-authenticate-to-aws)
+  - [1.2. Create ACM certificate for Kubernetes ingress](#12-create-acm-certificate-for-kubernetes-ingress)
+- [2. GitHub](#2-github)
+  - [2.1. Create GitHub App for Argo CD Image Updater](#21-create-github-app-for-argo-cd-image-updater)
+- [3. GitHub Actions](#3-github-actions)
+  - [3.1. Create repository secret](#31-create-repository-secret)
+  - [3.2. Set inputs](#32-set-inputs)
+- [4. Karpenter](#4-karpenter)
+  - [4.1. swan_kubernetes/swan_karpenter/ec2nodeclass.yaml](#41-swan_kubernetesswan_karpenterec2nodeclassyaml)
+  - [4.2. swan_kubernetes/swan_karpenter/nodepool.yaml](#42-swan_kubernetesswan_karpenternodepoolyaml)
+- [5. Helm](#5-helm)
+  - [5.1. swan_kubernetes/swan_helm/platform/](#51-swan_kubernetesswan_helmplatform)
+  - [5.2. swan_kubernetes/swan_helm/swan_microservices/](#52-swan_kubernetesswan_helmswan_microservices)
+- [6. Argo CD](#6-argo-cd)
+  - [6.1. swan_kubernetes/swan_argocd/root-app.yaml](#61-swan_kubernetesswan_argocdroot-appyaml)
+  - [6.2. swan_kubernetes/swan_argocd/swan_argocd_apps/](#62-swan_kubernetesswan_argocdswan_argocd_apps)
 
 ## 1. AWS
 
@@ -20,7 +40,7 @@ Tags:<br>
 &nbsp;&nbsp;&nbsp;&nbsp;Project: swan_polyglot-microservices-application<br>
 &nbsp;&nbsp;&nbsp;&nbsp;Environment: Production
 
-To add IAM permissions for "swan_githubactions_ecr" IAM Role, in AWS Management Console, go to "IAM" -> Access Management -> Roles -> swan_githubactions_ecr -> Permissions -> Add permissions. Click "Create inline policy". Go to "Policy editor" -> JSON. Copy and paste the following json. Click "Next". Enter "swan_githubactions_ecr" in "Policy name" under "Policy details". Click "Create policy".
+To add IAM permissions for "swan_githubactions_ecr" IAM role, in AWS Management Console, go to "IAM" -> Access Management -> Roles -> swan_githubactions_ecr -> Permissions -> Add permissions. Click "Create inline policy". Go to "Policy editor" -> JSON. Copy and paste the following json. Click "Next". Enter "swan_githubactions_ecr" in "Policy name" under "Policy details". Click "Create policy".
 ```json
 {
     "Version": "2012-10-17",
@@ -94,12 +114,6 @@ Where can this GitHub App be installed?: Only on this account<br>
 
 Go to "Settings" -> Developer settings -> GitHub Apps. Select "swan-argocd-image-updater" GitHub App. Go to "Install App". Click "Install". Choose "Only select repositories", click "Select repositories", and select "swanpyaetun/swan_polyglot-microservices-application". Click "Install".
 
-Go to "Settings" -> Developer settings -> GitHub Apps. Select "swan-argocd-image-updater" GitHub App. Go to "General". You will see "githubAppID".
-
-Go to "Settings" -> Integrations -> Applications -> Installed GitHub Apps. Select "swan-argocd-image-updater" GitHub App by clicking "Configure". Look at the URL. The number behind https://github.com/settings/installations/ is "githubAppInstallationID".
-
-Go to "Settings" -> Developer settings -> GitHub Apps. Select "swan-argocd-image-updater" GitHub App. Go to "General" -> Private keys. Click "Generate a private key". The private key will be downloaded to your work station.
-
 ## 3. GitHub Actions
 
 ### 3.1. Create repository secret
@@ -108,7 +122,7 @@ In swanpyaetun/swan_polyglot-microservices-application repository, go to "Settin
 
 Create a new repository secret:<br>
 Name: SWAN_CI_IAM_ROLE_ARN<br>
-Secret: swan_githubactions_ecr IAM Role arn from [1.1. Create IAM Role for GitHub Actions to authenticate to AWS](#11-create-iam-role-for-github-actions-to-authenticate-to-aws)
+Secret: swan_githubactions_ecr IAM role arn from [1.1. Create IAM Role for GitHub Actions to authenticate to AWS](#11-create-iam-role-for-github-actions-to-authenticate-to-aws)
 
 ### 3.2. Set inputs
 
@@ -131,20 +145,13 @@ jobs:
 
 Do the same for other microservices, except postgresql and valkey-cart. There is no CI/CD pipeline and private ECR repository for postgresql and valkey-cart microservices.
 
-### 3.3. How to run CI/CD pipelines for microservices
-
-CI/CD pipelines for microservices can be triggered in 3 ways:
-1. The CI/CD pipelines run when a pull request is opened against the main branch.
-2. The CI/CD pipelines run when a direct push is made to the main branch.
-3. In swanpyaetun/swan_polyglot-microservices-application repository, go to "Actions". Choose a microservice that you want to run CI/CD pipeline for. Click "Run workflow", and click "Run workflow" to run the CI/CD pipeline for the selected microservice.
-
 ## 4. Karpenter
 
 ### 4.1. swan_kubernetes/swan_karpenter/ec2nodeclass.yaml
 
 Private subnets, EKS node IAM role, and default cluster security group are already created in [https://github.com/swanpyaetun/swan_eks-infrastructure](https://github.com/swanpyaetun/swan_eks-infrastructure).
 
-Run this command before running the next command. Enter AWS Access Key ID and AWS Secret Access Key of the IAM User, and ap-southeast-1 as Default region name.
+Run this command before running the next command. Enter AWS Access Key ID and AWS Secret Access Key of the IAM user, and ap-southeast-1 as Default region name.
 ```bash
 aws configure
 ```
@@ -163,9 +170,9 @@ In swan_kubernetes/swan_karpenter/nodepool.yaml, set the following fields: spec.
 
 ## 5. Helm
 
-### 5.1. swan_kubernetes/swan_helm/swan_platform/
+### 5.1. swan_kubernetes/swan_helm/platform/
 
-In swan_kubernetes/swan_helm/swan_platform/, set the following value:
+In swan_kubernetes/swan_helm/platform/values.yaml, set the following value:
 ```yaml
 namespace: otel-demo
 ```
@@ -204,21 +211,21 @@ namespace: otel-demo
 
 ## 6. Argo CD
 
-### 6.1. swan_kubernetes/swan_argocd_root_app/
+### 6.1. swan_kubernetes/swan_argocd/root-app.yaml
 
-In swan_kubernetes/swan_argocd_root_app/root-app.yaml, set the following fields: spec.project, spec.source, spec.destination, and spec.syncPolicy.
+In swan_kubernetes/swan_argocd/root-app.yaml, set the following fields: spec.project, spec.source, spec.destination, and spec.syncPolicy.
 
-### 6.2. swan_kubernetes/swan_argocd_apps/
+### 6.2. swan_kubernetes/swan_argocd/swan_argocd_apps/
 
-In swan_kubernetes/swan_argocd_apps/platform-app.yaml, set the following fields: spec.project, spec.source, spec.destination, and spec.syncPolicy.
+In swan_kubernetes/swan_argocd/swan_argocd_apps/platform-app.yaml, set the following fields: spec.project, spec.source, spec.destination, and spec.syncPolicy.
 
-In swan_kubernetes/swan_argocd_apps/microservices-applicationset.yaml, set the following fields: spec.generators and spec.template.
+In swan_kubernetes/swan_argocd/swan_argocd_apps/microservices-applicationset.yaml, set the following fields: spec.generators and spec.template.
 
 Private ECR repositories are already created in [https://github.com/swanpyaetun/swan_eks-infrastructure](https://github.com/swanpyaetun/swan_eks-infrastructure).
 
-In swan_kubernetes/swan_argocd_apps/image-updater.yaml, set the following fields: spec.namespace, spec.commonUpdateSettings, spec.writeBackConfig, and spec.applicationRefs. 
+In swan_kubernetes/swan_argocd/swan_argocd_apps/image-updater.yaml, set the following fields: spec.namespace, spec.commonUpdateSettings, spec.writeBackConfig, and spec.applicationRefs. 
 
-For accounting microservice, in swan_kubernetes/swan_argocd_apps/image-updater.yaml, set the following under spec.applicationRefs:
+For accounting microservice, in swan_kubernetes/swan_argocd/swan_argocd_apps/image-updater.yaml, set the following under spec.applicationRefs:
 ```yaml
 - namePattern: accounting
   images:

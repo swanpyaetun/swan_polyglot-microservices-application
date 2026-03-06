@@ -11,7 +11,7 @@ spec:
   source:
     repoURL: https://github.com/swanpyaetun/swan_polyglot-microservices-application.git
     targetRevision: main
-    path: swan_kubernetes/swan_helm/swan_platform
+    path: swan_kubernetes/swan_helm/platform
     helm:
       valueFiles:
         - values.yaml

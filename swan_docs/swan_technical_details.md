@@ -115,7 +115,7 @@ swan_kubernetes/swan_helm/swan_microservices/ contains 22 Helm charts. Most Helm
 "accounting" and "fraud-detection" Helm charts only contain deployment and network policy.<br>
 "flagd" and "postgresql" Helm charts contain configmap, deployment, service, and network policy.
 
-High availibility in deployments is achieved by implementing the following practices:
+High availability in deployments is achieved by implementing the following practices:
 1. Having 2 replicas in deployment
 <br>
 

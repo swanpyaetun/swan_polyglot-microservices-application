@@ -15,4 +15,4 @@ resources:
     memory: 65Mi
 swan_ingress:
   swan_host: www.swanpyaetun.com
-  swan_acm_certificate_arn: arn:aws:acm:ap-southeast-1:655355946217:certificate/0936ff2b-5a7a-45c9-afab-6a372b65e3a1
+  swan_acm_certificate_arn: arn:aws:acm:ap-southeast-1:655355946217:certificate/314cbcc5-340d-4a7a-8d2d-82e7b596662d

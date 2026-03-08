@@ -16,6 +16,7 @@
 ## 3. Instructions
 
 Run "Provision AWS Infrastructure using Terraform" pipeline in [https://github.com/swanpyaetun/swan_eks-infrastructure](https://github.com/swanpyaetun/swan_eks-infrastructure) to create EKS infrastructure.
+<br>
 
 Run CI/CD pipelines for microservices to build and push Docker images to private ECR repositories.<br>
 CI/CD pipelines for microservices can be triggered in 3 ways:

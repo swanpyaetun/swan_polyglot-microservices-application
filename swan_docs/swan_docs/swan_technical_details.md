@@ -62,7 +62,7 @@ CI/CD pipelines for microservices can be triggered in 3 ways:
 2. The CI/CD pipelines run when a direct push is made to the main branch.
 3. The CI/CD pipelines run when a user manually triggers them.
 
-In CI/CD pipelines for microservices, swan_docker job uses [./.github/workflows/swan_docker.yml reusable workflow](#31-githubworkflowsswan_dockeryml).
+In CI/CD pipelines for microservices, swan_docker job uses [./.github/workflows/swan_docker.yml reusable workflow](#21-githubworkflowsswan_dockeryml).
 
 ## 3. GitHub
 
@@ -81,8 +81,10 @@ The following command can be used to determine the alias version in a specific r
 export K8S_VERSION="1.35"
 aws ssm get-parameter --name "/aws/service/eks/optimized-ami/${K8S_VERSION}/amazon-linux-2023/x86_64/standard/recommended/image_id" --query Parameter.Value | xargs aws ec2 describe-images --query 'Images[0].Name' --image-ids | sed -r 's/^.*(v[[:digit:]]+).*$/\1/'
 ```
+<br>
 
 Private subnets, EKS node IAM role, and default cluster security group are already created in [https://github.com/swanpyaetun/swan_eks-infrastructure](https://github.com/swanpyaetun/swan_eks-infrastructure).
+<br>
 
 In "default" ec2nodeclass,
 1. EKS node IAM role is attached to Karpenter managed nodes.

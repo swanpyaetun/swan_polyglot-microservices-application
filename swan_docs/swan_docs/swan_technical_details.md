@@ -84,7 +84,7 @@ aws ssm get-parameter --name "/aws/service/eks/optimized-ami/${K8S_VERSION}/amaz
 <br>
 
 Private subnets, EKS node IAM role, and default cluster security group are already created in [https://github.com/swanpyaetun/swan_eks-infrastructure](https://github.com/swanpyaetun/swan_eks-infrastructure).
-<br>
+<br><br>
 
 In "default" ec2nodeclass,
 1. EKS node IAM role is attached to Karpenter managed nodes.

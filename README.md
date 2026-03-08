@@ -9,18 +9,19 @@
 - [3. Instructions](#3-instructions)
 - [4. Additional Information](#4-additional-information)
 
-## 1. See [Prerequisites](swan_docs/swan_prerequisites.md)
+## 1. See [Prerequisites](swan_docs/swan_docs/swan_prerequisites.md)
 
-## 2. See [Technical Details](swan_docs/swan_technical_details.md)
+## 2. See [Technical Details](swan_docs/swan_docs/swan_technical_details.md)
 
 ## 3. Instructions
 
-Run "Provision AWS Infrastructure using Terraform" pipeline in [https://github.com/swanpyaetun/swan_eks-infrastructure](https://github.com/swanpyaetun/swan_eks-infrastructure) to create EKS infrastructure.<br>
+Run "Provision AWS Infrastructure using Terraform" pipeline in [https://github.com/swanpyaetun/swan_eks-infrastructure](https://github.com/swanpyaetun/swan_eks-infrastructure) to create EKS infrastructure.
+
 Run CI/CD pipelines for microservices to build and push Docker images to private ECR repositories.<br>
 CI/CD pipelines for microservices can be triggered in 3 ways:
 1. The CI/CD pipelines run when a pull request is opened against the main branch.
 2. The CI/CD pipelines run when a direct push is made to the main branch.
-3. In swanpyaetun/swan_polyglot-microservices-application repository, go to "Actions". Choose a microservice that you want to run CI/CD pipeline for. Click "Run workflow", and click "Run workflow" to run the CI/CD pipeline for the selected microservice.
+3. The CI/CD pipelines run when a user manually triggers them.
 
 To view ECR basic scanning results, in AWS Management Console, go to ap-southeast-1 region -> Elastic Container Registry -> Private registry -> Repositories. Choose a repository that has container image that you want to view ECR basic scanning result for. Choose an image that you want to view ECR basic scanning result for. Under "Scanning and vulnerabilities", you will see ECR basic scanning result for that image.
 <br><br>

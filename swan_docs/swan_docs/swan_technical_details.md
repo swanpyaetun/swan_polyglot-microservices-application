@@ -4,12 +4,13 @@
 
 - [1. AWS](#1-aws)
   - [1.1. IAM Role for GitHub Actions to authenticate to AWS](#11-iam-role-for-github-actions-to-authenticate-to-aws)
-  - [1.2. ACM certificate for Kubernetes ingress](#12-acm-certificate-for-kubernetes-ingress)
-- [2. GitHub](#2-github)
-  - [2.1. GitHub App for Argo CD Image Updater](#21-github-app-for-argo-cd-image-updater)
-- [3. GitHub Actions](#3-github-actions)
-  - [3.1. .github/workflows/swan_docker.yml](#31-githubworkflowsswan_dockeryml)
-  - [3.2. CI/CD pipelines for microservices](#32-cicd-pipelines-for-microservices)
+  - [1.2. Private ECR Repositories for Microservices](#12-private-ecr-repositories-for-microservices)
+  - [1.3. ACM Certificate for Kubernetes Ingress](#13-acm-certificate-for-kubernetes-ingress)
+- [2. GitHub Actions](#2-github-actions)
+  - [2.1. .github/workflows/swan_docker.yml](#21-githubworkflowsswan_dockeryml)
+  - [2.2. CI/CD pipelines for microservices](#22-cicd-pipelines-for-microservices)
+- [3. GitHub](#3-github)
+  - [3.1. GitHub App for Argo CD Image Updater](#31-github-app-for-argo-cd-image-updater)
 - [4. Karpenter](#4-karpenter)
   - [4.1. swan_kubernetes/swan_karpenter/ec2nodeclass.yaml](#41-swan_kubernetesswan_karpenterec2nodeclassyaml)
   - [4.2. swan_kubernetes/swan_karpenter/nodepool.yaml](#42-swan_kubernetesswan_karpenternodepoolyaml)
@@ -24,29 +25,23 @@
 
 ### 1.1. IAM Role for GitHub Actions to authenticate to AWS
 
-IAM role is configured to trust GitHub OIDC provider, swanpyaetun organization, and swan_polyglot-microservices-application repository. An inline policy which has ECR permissions for selected ECR repositories is attached to IAM role.
-
-GitHub Actions can now assume IAM role.
+IAM role is configured to trust GitHub OIDC provider for swan_polyglot-microservices-application repository in swanpyaetun organization. An inline policy with ECR permissions for selected ECR repositories is attached to IAM role.
 
 GitHub Actions authentication to AWS is secured by implementing the following practices:
 1. Not storing long-lived IAM user credentials in GitHub
 2. Using short-lived OIDC tokens with automatic expiration
 
-### 1.2. ACM certificate for Kubernetes ingress
+### 1.2. Private ECR Repositories for Microservices
+
+There are 20 private ECR repositories for microservices. There is no private ECR repository for postgresql and valkey-cart microservices.
+
+### 1.3. ACM Certificate for Kubernetes Ingress
 
 ACM certificate is used to enable https for the application.
 
-## 2. GitHub
+## 2. GitHub Actions
 
-### 2.1. GitHub App for Argo CD Image Updater
-
-Argo CD Image Updater authentication to GitHub is secured by implementing the following practices:
-1. Using GitHub App for fine grained control over permissions and repositories
-2. GitHub App uses short lived tokens
-
-## 3. GitHub Actions
-
-### 3.1. .github/workflows/swan_docker.yml
+### 2.1. .github/workflows/swan_docker.yml
 
 .github/workflows/swan_docker.yml is a reusable workflow for building and pushing Docker images to ECR.
 
@@ -58,7 +53,7 @@ swan_docker job does the following steps:
 5. set up Docker in the runner
 6. build and push Docker image
 
-### 3.2. CI/CD pipelines for microservices
+### 2.2. CI/CD pipelines for microservices
 
 There are 20 CI/CD pipelines which build and push Docker images to private ECR repositories. Each microservice has 1 CI/CD pipeline, except postgresql and valkey-cart.
 
@@ -69,9 +64,25 @@ CI/CD pipelines for microservices can be triggered in 3 ways:
 
 In CI/CD pipelines for microservices, swan_docker job uses [./.github/workflows/swan_docker.yml reusable workflow](#31-githubworkflowsswan_dockeryml).
 
+## 3. GitHub
+
+### 3.1. GitHub App for Argo CD Image Updater
+
+Argo CD Image Updater authentication to GitHub is secured by implementing the following practices:
+1. Using GitHub App for fine grained control over permissions and repositories
+2. GitHub App uses short lived tokens
+
 ## 4. Karpenter
 
 ### 4.1. swan_kubernetes/swan_karpenter/ec2nodeclass.yaml
+
+The following command can be used to determine the alias version in a specific region.
+```bash
+export K8S_VERSION="1.35"
+aws ssm get-parameter --name "/aws/service/eks/optimized-ami/${K8S_VERSION}/amazon-linux-2023/x86_64/standard/recommended/image_id" --query Parameter.Value | xargs aws ec2 describe-images --query 'Images[0].Name' --image-ids | sed -r 's/^.*(v[[:digit:]]+).*$/\1/'
+```
+
+Private subnets, EKS node IAM role, and default cluster security group are already created in [https://github.com/swanpyaetun/swan_eks-infrastructure](https://github.com/swanpyaetun/swan_eks-infrastructure).
 
 In "default" ec2nodeclass,
 1. EKS node IAM role is attached to Karpenter managed nodes.
@@ -111,18 +122,14 @@ Security in namespace "otel-demo" is achieved by implementing the following prac
 
 swan_kubernetes/swan_helm/swan_microservices/ contains 22 Helm charts. Most Helm charts contain deployment, service, and network policy.
 
-"frontend-proxy" Helm chart contains deployment, service, ingress and network policy.
+"frontend-proxy" Helm chart contains deployment, service, ingress and network policy.<br>
 "accounting" and "fraud-detection" Helm charts only contain deployment and network policy.<br>
 "flagd" and "postgresql" Helm charts contain configmap, deployment, service, and network policy.
-
-High availability in deployments is achieved by implementing the following practices:
-1. Having 2 replicas in deployment
-<br>
 
 In "frontend-proxy" Helm chart, there is an ingress called "frontend-proxy". AWS Load Balancer Controller in EKS will create internet-facing ALB. "frontend-proxy" ingress uses ip mode to route traffic directly to pod ip addresses. ACM certificate is attached to ALB to enable https. The ingress is configured to redirect http to https. External DNS in EKS will create DNS records in "swanpyaetun.com" Route 53 public hosted zone.
 <br><br>
 
-![](architecture.png)
+![](../swan_images/traffic_flow.png)
 Network policies are created according to traffic flows in the diagram.
 
 When creating network policies, these traffic flows are excluded since they are not needed for application to function:

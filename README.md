@@ -2,6 +2,8 @@
 
 # Deploying 22 Microservices Application to EKS with GitHub Actions and Argo CD
 
+![](swan_docs/swan_images/architecture_diagram.png)
+
 - Tools used: GitHub Actions, AWS, ECR, EKS, Helm, Argo CD, Argo CD Image Updater, AWS Load Balancer Controller, External DNS, Karpenter
 - Deploy 22 microservices application to EKS with GitHub Actions and Argo CD
 - Set up GitHub Actions reusable workflow for building and pushing Docker images to ECR

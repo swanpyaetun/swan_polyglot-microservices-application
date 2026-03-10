@@ -2,6 +2,39 @@
 
 # Deploying 22 Microservices Application to EKS with GitHub Actions and Argo CD
 
+- Tools used: GitHub Actions, AWS, ECR, EKS, Helm, Argo CD, Argo CD Image Updater, AWS Load Balancer Controller, External DNS, Karpenter
+- Deploy 22 microservices application to EKS with GitHub Actions and Argo CD
+- Set up GitHub Actions reusable workflow for building and pushing Docker images to ECR
+- Set up 20 GitHub Actions CI/CD pipelines for microservices, which use reusable workflow to build and push Docker images to private ECR repositories
+- Use GitHub Actions repository secret to store sensitive values
+- Use GitHub App, so that Argo CD Image Updater can push to GitHub
+- Use CI IAM role which only allows a specific GitHub repository in a specific GitHub organization authenticate to AWS using GitHub OIDC provider
+- Secure GitHub Actions authentication to AWS by using short-lived OIDC tokens with automatic expiration, instead of storing long-lived IAM user credentials in GitHub
+- Use private ECR Repositories to store container images
+- Create ec2nodeclass and nodepool for Karpenter to scale EKS nodes
+- Prioritize spot capacity type with fallback option to on-demand in Karpenter to optimize cost
+- Remove EKS nodes that are idle or underutilized, and replace with cheaper node to optimize cost
+- Use Helm to package Kubernetes manifests into Helm charts
+- Create namespace, service account, "default-deny" network policy, and "allow-dns-access" network policy in "platform" Helm chart
+- Deny all ingress and egress traffic in the namespace with "default-deny" network policy
+- Allow the pods in the namespace to access coredns pods with "allow-dns-access" network policy
+- Create deployments, services, and network policies in microservices Helm charts
+- Secure the application by creating least privilege network policies
+- Create ingress in "frontend-proxy" Helm chart
+- Create internet-facing ALB for Kubernetes ingress with AWS Load Balancer Controller
+- Use ip mode in ingress to route traffic directly to pod ip addresses
+- Use ACM certificate in ingress to enable https
+- Redirect http to https in ingress
+- Create DNS records in Route 53 public hosted zone with External DNS
+- Use Argo CD App-of-Apps pattern
+- Deploy "platform" application, "microservices" applicationset, and "microservices" imageupdater with "root" application in Argo CD
+- Deploy "platform" Helm chart with "platform" application in Argo CD
+- Generate multiple Argo CD applications for each microservice Helm chart with "microservices" applicationset
+- Enable Argo CD to automatically synchronize with git
+- Validate the manifests before applying in Argo CD
+- Create new resources first before pruning old resources in Argo CD
+- Monitor ECR for new container image tags, and update the container image tags in the git repository with Argo CD Image Updater
+
 ## Table of Contents
 
 - [1. Prerequisites](#1-see-prerequisites)
@@ -30,7 +63,7 @@ To view ECR basic scanning results, in AWS Management Console, go to ap-southeas
 ```bash
 aws eks update-kubeconfig --region ap-southeast-1 --name swan_production_eks_cluster --role-arn arn:aws:iam::655355946217:role/swan_production_eks_cluster-swan_eks_cluster_admin_iam_role
 ```
-This command updates ~/.kube/config so "swan_production_eks_cluster" EKS cluster can be accessed using kubectl, assuming "swan_production_eks_cluster-swan_eks_cluster_admin_iam_role" IAM role.
+This command updates ~/.kube/config so that "swan_production_eks_cluster" EKS cluster can be accessed using kubectl, assuming "swan_production_eks_cluster-swan_eks_cluster_admin_iam_role" IAM role.
 <br><br>
 
 ```bash

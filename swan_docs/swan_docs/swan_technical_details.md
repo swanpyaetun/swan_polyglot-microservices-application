@@ -68,6 +68,8 @@ In CI/CD pipelines for microservices, swan_docker job uses [./.github/workflows/
 
 ### 3.1. GitHub App for Argo CD Image Updater
 
+Argo CD Image Updater uses GitHub App to push to GitHub.
+
 Argo CD Image Updater authentication to GitHub is secured by implementing the following practices:
 1. Using GitHub App for fine grained control over permissions and repositories
 2. GitHub App uses short lived tokens
@@ -110,14 +112,14 @@ Karpenter does cost-optimization by implementing the following practices:
 
 ## 5. Helm
 
-Helm is used to package Kubernetes manifest files into Helm charts.
+Helm is used to package Kubernetes manifests into Helm charts.
 
 ### 5.1. swan_kubernetes/swan_helm/platform/
 
 In "platform" Helm chart, a namespace and service account for the application is created. "default-deny" network policy denies all ingress and egress traffic in the namespace. "allow-dns-access" network policy allows the pods in the namespace to access coredns pods.
 
 Security in namespace "otel-demo" is achieved by implementing the following practices:
-1. "default-deny" network policy to deny all ingress and egress traffic in the namespace
+1. "default-deny" network policy denies all ingress and egress traffic in the namespace
 2. Creating least privilege network policies
 
 ### 5.2. swan_kubernetes/swan_helm/swan_microservices/
@@ -128,7 +130,7 @@ swan_kubernetes/swan_helm/swan_microservices/ contains 22 Helm charts. Most Helm
 "accounting" and "fraud-detection" Helm charts only contain deployment and network policy.<br>
 "flagd" and "postgresql" Helm charts contain configmap, deployment, service, and network policy.
 
-In "frontend-proxy" Helm chart, there is an ingress called "frontend-proxy". AWS Load Balancer Controller in EKS will create internet-facing ALB. "frontend-proxy" ingress uses ip mode to route traffic directly to pod ip addresses. ACM certificate is attached to ALB to enable https. The ingress is configured to redirect http to https. External DNS in EKS will create DNS records in "swanpyaetun.com" Route 53 public hosted zone.
+In "frontend-proxy" Helm chart, there is an ingress called "frontend-proxy". AWS Load Balancer Controller in EKS will create internet-facing ALB. "frontend-proxy" ingress uses ip mode to route traffic directly to pod ip addresses. The ingress uses ACM certificate to enable https. The ingress is configured to redirect http to https. External DNS in EKS will create DNS records in "swanpyaetun.com" Route 53 public hosted zone.
 <br><br>
 
 ![](../swan_images/traffic_flow.png)

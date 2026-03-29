@@ -1,0 +1,9 @@
+---
+nodeSelector:
+  workload-type: "system"
+
+tolerations:
+- key: "workload-type"
+  operator: "Equal"
+  value: "system"
+  effect: "NoSchedule"

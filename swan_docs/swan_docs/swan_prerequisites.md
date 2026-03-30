@@ -62,5 +62,5 @@ In swan_kubernetes/swan_helm/swan_microservices/frontend-proxy/values.yaml, set 
 ```yaml
 swan_ingress:
   swan_host: www.swanpyaetun.com
-  swan_acm_certificate_arn: arn:aws:acm:ap-southeast-1:655355946217:certificate/314cbcc5-340d-4a7a-8d2d-82e7b596662d
+  swan_acm_certificate_arn: arn:aws:acm:ap-southeast-1:655355946217:certificate/b4552389-3ef5-4c74-9f1d-70a087f6cc4f
 ```

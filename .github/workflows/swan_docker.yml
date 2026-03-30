@@ -60,4 +60,4 @@ jobs:
             OTEL_JAVA_AGENT_VERSION=${{ env.OTEL_JAVA_AGENT_VERSION }}
             OPENTELEMETRY_CPP_VERSION=${{ env.OPENTELEMETRY_CPP_VERSION }}
             TRACETEST_IMAGE_VERSION=${{ env.TRACETEST_IMAGE_VERSION }}
-          tags: ${{ steps.login-ecr.outputs.registry }}/${{ inputs.swan_ecr_repository }}:${{ github.run_id }}
+          tags: ${{ steps.login-ecr.outputs.registry }}/${{ inputs.swan_ecr_repository }}:${{ github.sha }}

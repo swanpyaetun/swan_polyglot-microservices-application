@@ -15,7 +15,7 @@ spec:
     metadata:
       name: '{{path.basename}}'
       annotations:
-        argocd.argoproj.io/depends-on: platform
+        argocd.argoproj.io/depends-on: base
       finalizers:
         - resources-finalizer.argocd.argoproj.io/foreground
     spec:

@@ -56,14 +56,8 @@ spec:
             - name: OTEL_DOTNET_AUTO_TRACES_ENTITYFRAMEWORKCORE_INSTRUMENTATION_ENABLED
               value: "false"
           resources:
-            {{- with .Values.resources }}
-            requests:
-              cpu: {{ .requests.cpu }}
-              memory: {{ .requests.memory }}
             limits:
-              cpu: {{ .limits.cpu }}
-              memory: {{ .limits.memory }}
-            {{- end }}
+              memory: 120Mi
           volumeMounts:
       initContainers:
         - command:

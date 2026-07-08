@@ -105,14 +105,8 @@ spec:
             - name: FIREPIT_PORT
               value: "8080"
           resources:
-            {{- with .Values.resources }}
-            requests:
-              cpu: {{ .requests.cpu }}
-              memory: {{ .requests.memory }}
             limits:
-              cpu: {{ .limits.cpu }}
-              memory: {{ .limits.memory }}
-            {{- end }}
+              memory: 65Mi
           securityContext:
             runAsGroup: 101
             runAsNonRoot: true

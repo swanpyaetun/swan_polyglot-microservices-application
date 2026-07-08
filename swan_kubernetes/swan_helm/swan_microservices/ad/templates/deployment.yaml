@@ -62,13 +62,7 @@ spec:
             - name: OTEL_LOGS_EXPORTER
               value: otlp
           resources:
-            {{- with .Values.resources }}
-            requests:
-              cpu: {{ .requests.cpu }}
-              memory: {{ .requests.memory }}
             limits:
-              cpu: {{ .limits.cpu }}
-              memory: {{ .limits.memory }}
-            {{- end }}
+              memory: 300Mi
           volumeMounts:
       volumes:

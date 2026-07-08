@@ -69,14 +69,8 @@ spec:
             - name: GOMEMLIMIT
               value: 60MiB
           resources:
-            {{- with .Values.flagd.resources }}
-            requests:
-              cpu: {{ .requests.cpu }}
-              memory: {{ .requests.memory }}
             limits:
-              cpu: {{ .limits.cpu }}
-              memory: {{ .limits.memory }}
-            {{- end }}
+              memory: 75Mi
           volumeMounts:
             - name: config-rw
               mountPath: /etc/flagd
@@ -108,14 +102,8 @@ spec:
             - name: PHX_HOST
               value: localhost
           resources:
-            {{- with .Values.flagd_ui.resources }}
-            requests:
-              cpu: {{ .requests.cpu }}
-              memory: {{ .requests.memory }}
             limits:
-              cpu: {{ .limits.cpu }}
-              memory: {{ .limits.memory }}
-            {{- end }}
+              memory: 250Mi
           volumeMounts:
             - mountPath: /app/data
               name: config-rw

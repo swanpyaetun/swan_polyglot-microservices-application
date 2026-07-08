@@ -4,7 +4,7 @@
 
 ![](swan_docs/swan_images/architecture_diagram.png)
 
-- Tools used: GitHub Actions, AWS, ECR, EKS, Helm, Argo CD, Argo CD Image Updater, AWS Load Balancer Controller, External DNS, Karpenter
+- Tools used: GitHub Actions, EKS, Karpenter, Argo CD
 - Deploy microservices application to EKS with GitHub Actions and Argo CD
 - Set up 20 GitHub Actions CI/CD pipelines for microservices, which use reusable workflow to build and push Docker images to private ECR repositories
 - Secure GitHub Actions authentication to AWS by using short-lived OIDC tokens with automatic expiration, instead of storing long-lived IAM user credentials in GitHub
